@@ -6,7 +6,7 @@ nav {
 }
 a {
     color: white;
-    padding: 4rem;
+    padding: 2rem 4rem;
     text-decoration: none;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 1.5rem;
@@ -14,6 +14,7 @@ a {
 }
 
 a:hover {
+    border: 1px dashed white;
     background-color: #666666;
-    font-size: 1.5rem;
+    font-size: 1.5rem; 
 }
