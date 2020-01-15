@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Nav from './Nav'
 
-function App() {
-  return (
-    <div className="App">
-      <p>TEST</p>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <Nav/>
+      </div>
+    );
+  }
+  
 }
 
 export default App;
