@@ -1,0 +1,19 @@
+nav {
+    margin: 3rem 0;
+    background-color: black;
+    text-align: center;
+    padding: 2rem;
+}
+a {
+    color: white;
+    padding: 4rem;
+    text-decoration: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.5rem;
+    border: 1px dashed white;
+}
+
+a:hover {
+    background-color: #666666;
+    font-size: 1.5rem;
+}
