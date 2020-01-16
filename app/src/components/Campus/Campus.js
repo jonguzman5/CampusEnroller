@@ -4,7 +4,8 @@ import CampusImage from './CampusImage';
 import CampusAddress from './CampusAddress';
 import CampusName from './CampusName';
 import CampusDesc from './CampusDesc';
-import Student from '../Student/Student';
+import StudentImage from '../Student/StudentImage';
+//import Student from '../Student/Student';
 
 class Campus extends Component {
   render(){
@@ -23,16 +24,16 @@ class Campus extends Component {
             </div>
           </div>
           <div className="box box2">
-            <Student/>
-            <Student/>
-            <Student/>
-            <Student/>
-            <Student/>
-            <Student/>
-            <Student/>
-            <Student/>
-            <Student/>
-            <Student/>
+            <StudentImage/>
+            <StudentImage/>
+            <StudentImage/>
+            <StudentImage/>
+            <StudentImage/>
+            <StudentImage/>
+            <StudentImage/>
+            <StudentImage/>
+            <StudentImage/>
+            <StudentImage/>
           </div>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../css/Student.css';
 
 function StudentImage(){
     //const image = this.props.image;
