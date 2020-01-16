@@ -17,4 +17,5 @@ a:hover {
     border: 1px dashed white;
     background-color: #666666;
     font-size: 1.5rem; 
+    cursor: pointer;
 }
