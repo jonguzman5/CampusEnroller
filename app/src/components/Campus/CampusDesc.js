@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../css/Campus.css';
 
 function CampusDesc(){
   //const desc = this.props.desc;
