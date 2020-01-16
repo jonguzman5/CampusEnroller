@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import './Campuses.css'
+import '../../css/Campuses.css'
+import CampusCard from '../CampusCard/CampusCard'
 
 class Campuses extends Component {
     constructor(props) {
@@ -10,7 +11,8 @@ class Campuses extends Component {
         return(
             <div>
                 <h3>All Campuses</h3>
-                <button>Add Campus</button>           
+                <button className="AddCampusBtn">Add Campus</button>
+                <CampusCard/>           
             </div>
         );
     }
