@@ -3,6 +3,7 @@ nav {
     background-color: black;
     text-align: center;
     padding: 2rem;
+    border-radius: 1rem;
 }
 a {
     color: white;
@@ -16,6 +17,14 @@ a {
 a:hover {
     border: 1px dashed white;
     background-color: #666666;
-    font-size: 1.5rem; 
+    font-size: 1.5rem;
     cursor: pointer;
+}
+
+a > * {
+  border: none;
+}
+
+a > *:hover {
+  border: none;
 }
