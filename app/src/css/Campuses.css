@@ -18,6 +18,9 @@ button {
     border-bottom: none;
     border-radius: 8px;
     font-weight: bold;
+}
+
+.AddCampusBtn {
     margin-left: 45rem;
 }
 
@@ -26,3 +29,4 @@ button:hover {
     background-color: rgb(151, 78, 69);
     padding: 0.6rem 1.1rem;
 }
+
