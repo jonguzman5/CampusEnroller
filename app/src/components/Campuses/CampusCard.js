@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import '../../css/Campuses.css'
 
 function CampusCard(){
@@ -15,7 +16,7 @@ function CampusCard(){
       <a><h4>{name}</h4></a>
       <p>{num} Students</p>
       <div className="buttons">
-        <button>Edit</button>
+        <NavLink to="/Campuses/EditCampusForm"><button>Edit</button></NavLink>
         <button>Delete</button>
       </div>
     </div>
