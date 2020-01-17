@@ -1,6 +1,6 @@
 import React from "react";
 import {Link, BrowserRouter, Route, Switch} from "react-router-dom";
-import '../css/nav.css';
+import '../css/Nav.css';
 import App from "./App";
 import Campuses from './Campuses/Campuses'
 import NewCampusForm from './Campuses/NewCampusForm'
@@ -10,6 +10,7 @@ import Campus from "./Campus/Campus";
 import Students from './Students/Students'
 import NewStudentForm from './Students/NewStudentForm'
 import Student from "./Student/Student";
+import EditStudentForm from './Student/EditStudentForm'
 
 import NotFound from "./NotFound";
 
@@ -30,6 +31,7 @@ const Router = () => (
             <Route exact path="/Students" component={Students}/>
             <Route exact path="/Students/NewStudentForm" component={NewStudentForm}/>
             <Route exact path="/Student" component={Student}/>
+            <Route exact path="/Student/EditStudentForm" component={EditStudentForm}/>
             <Route exact component={NotFound}/>
         </Switch>
     </BrowserRouter>
