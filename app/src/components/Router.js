@@ -3,6 +3,7 @@ import {Link, BrowserRouter, Route, Switch} from "react-router-dom";
 import '../css/nav.css';
 import App from "./App";
 import Campuses from './Campuses/Campuses'
+import NewCampusForm from './Campuses/NewCampusForm'
 import Campus from "./Campus/Campus";
 import Student from "./Student/Student";
 import NotFound from "./NotFound";
@@ -10,15 +11,15 @@ import NotFound from "./NotFound";
 const Router = () => (
     <BrowserRouter>
         <nav>
-            <a><Link to="/">Home</Link></a>
-            <a><Link to="/Campuses">Campuses</Link></a>
-            <a><Link to="/">Students</Link></a>
+            <Link to="/">Home</Link>
+            <Link to="/Campuses">Campuses</Link>
+            <Link to="/">Students</Link>
         </nav>
         <Switch>
             <Route exact path="/" component={App}/>
             <Route exact path="/Campus" component={Campus}/>
             <Route exact path="/Campuses" component={Campuses}/>
-
+            <Route exact path="/Campuses/NewCampusForm" component={NewCampusForm}/>
             <Route exact path="/Student" component={Student}/>
             <Route exact component={NotFound}/>
         </Switch>
