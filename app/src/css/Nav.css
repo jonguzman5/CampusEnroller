@@ -5,7 +5,7 @@ nav {
     padding: 2rem;
     border-radius: 1rem;
 }
-a {
+nav a {
     color: white;
     padding: 2rem 4rem;
     text-decoration: none;
@@ -14,17 +14,17 @@ a {
     border: 1px dashed white;
 }
 
-a:hover {
+nav a:hover {
     border: 1px dashed white;
     background-color: #666666;
     font-size: 1.5rem;
     cursor: pointer;
 }
 
-a > * {
+nav a > * {
   border: none;
 }
 
-a > *:hover {
+nav a > *:hover {
   border: none;
 }
