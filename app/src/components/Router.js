@@ -4,6 +4,7 @@ import '../css/nav.css';
 import App from "./App";
 import Campuses from './Campuses/Campuses'
 import NewCampusForm from './Campuses/NewCampusForm'
+import EditCampusForm from './Campuses/EditCampusForm'
 import Campus from "./Campus/Campus";
 
 import Students from './Students/Students'
@@ -24,6 +25,8 @@ const Router = () => (
             <Route exact path="/Campus" component={Campus}/>
             <Route exact path="/Campuses" component={Campuses}/>
             <Route exact path="/Campuses/NewCampusForm" component={NewCampusForm}/>
+            <Route exact path="/Campuses/EditCampusForm" component={EditCampusForm}/>
+
             <Route exact path="/Students" component={Students}/>
             <Route exact path="/Students/NewStudentForm" component={NewStudentForm}/>
             <Route exact path="/Student" component={Student}/>
