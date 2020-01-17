@@ -1,5 +1,5 @@
-
 import React, {Component} from 'react';
+import { NavLink } from 'react-router-dom'
 import '../../css/Student.css';
 import StudentImage from './StudentImage';
 import StudentName from './StudentName';
@@ -20,6 +20,10 @@ class Student extends Component {
             <div className="item item2">
               <StudentName/>
               <StudentDesc/>
+              <div className="buttons">
+                <NavLink to="/Student/EditStudentForm"><button>Edit</button></NavLink>
+                <button>Delete</button>
+              </div>
             </div>
           </div>
           <div className="box box2">
