@@ -17,12 +17,14 @@ class NewCampusForm extends Component {
 
   render(){
     return (
-      <form className="new-campus-form" onSubmit={this.handleSubmit}>
-        <h1>New Campus Form</h1>
-        <h2>Campus Name</h2>
-        <input type='text' onChange={this.handleChange}/>
-        <input type='submit' value="Add Campus"/> {/*ADD REDIRECT TO /CAMPUSES*/}
-      </form>
+      <div className="newcampusform-container">
+        <form onSubmit={this.handleSubmit}>
+          <h1>New Campus Form</h1>
+          <h2>Campus Name</h2>
+          <input type='text' onChange={this.handleChange}/>
+          <input type='submit' value="Add Campus"/> {/*ADD REDIRECT TO /CAMPUSES*/}
+        </form>
+      </div>
     );
   }
 }

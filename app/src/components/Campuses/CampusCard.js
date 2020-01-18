@@ -13,7 +13,7 @@ function CampusCard(){
   return (
     <div className="campuscard">
       <img src={image}></img>
-      <a><h4>{name}</h4></a>
+      <NavLink to="/Campus"><h4>{name}</h4></NavLink>
       <p>{num} Students</p>
       <div className="buttons">
         <NavLink to="/Campuses/EditCampusForm"><button>Edit</button></NavLink>

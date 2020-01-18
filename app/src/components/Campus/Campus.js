@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
+import { NavLink } from 'react-router-dom';
 import '../../css/Campus.css';
 import CampusImage from './CampusImage';
 import CampusAddress from './CampusAddress';
 import CampusName from './CampusName';
 import CampusDesc from './CampusDesc';
-import StudentImage from '../Student/StudentImage';
+import StudentCard from '../Students/StudentCard';
 //import Student from '../Student/Student';
 
 class Campus extends Component {
@@ -21,19 +22,27 @@ class Campus extends Component {
             <div className="item item2">
               <CampusName/>
               <CampusDesc/>
+              <div className="buttons">
+                <NavLink to="/Campuses/EditCampusForm"><button>Edit</button></NavLink>
+                <button>Delete</button>
+              </div>
             </div>
           </div>
           <div className="box box2">
-            <StudentImage/>
-            <StudentImage/>
-            <StudentImage/>
-            <StudentImage/>
-            <StudentImage/>
-            <StudentImage/>
-            <StudentImage/>
-            <StudentImage/>
-            <StudentImage/>
-            <StudentImage/>
+            <h3>Students on campus</h3>
+            <NavLink to="/Students/NewStudentForm"><button>Add Student</button></NavLink>
+          </div>
+          <div className="studentcard-container">
+            <StudentCard/>
+            <StudentCard/>
+            <StudentCard/>
+            <StudentCard/>
+            <StudentCard/>
+            <StudentCard/>
+            <StudentCard/>
+            <StudentCard/>
+            <StudentCard/>
+            <StudentCard/>
           </div>
         </div>
       </div>

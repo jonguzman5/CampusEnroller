@@ -89,19 +89,30 @@
 }
 /**********************************************************************/
 
-.new-campus-form {
+.newcampusform-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  /*border: 10px solid goldenrod;*/
 }
 
-.new-campus-form input[type=text] {
+.newcampusform-container form {
+  display: flex;
+  width: 50vw;
+  height: 50vh;
+  background-color: darkgrey;
+  flex-direction: column;
+  align-items: center;
+  /*border: 10px solid red;*/
+}
+
+.newcampusform-container form input[type=text] {
   width: 25vw;
   height: 5vh;
   border: 1px solid black;
 }
 
-.new-campus-form input[type=submit] {
+.newcampusform-container form input[type=submit] {
   background-color: salmon;
   border: 2px solid #974E45;
   border-bottom: none;
@@ -109,4 +120,41 @@
   font-weight: bold;
   height: 5vh;
   text-decoration: none;
+  margin-top: 2rem;
+}
+
+/**********************************************************************/
+
+.editcampusform-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /*border: 10px solid goldenrod;*/
+}
+
+.editcampusform-container form {
+  display: flex;
+  width: 50vw;
+  height: 50vh;
+  background-color: darkgrey;
+  flex-direction: column;
+  align-items: center;
+  /*border: 10px solid red;*/
+}
+
+.editcampusform-container form input[type=text] {
+  width: 25vw;
+  height: 5vh;
+  border: 1px solid black;
+}
+
+.editcampusform-container form input[type=submit] {
+  background-color: salmon;
+  border: 2px solid #974E45;
+  border-bottom: none;
+  border-radius: 16px;
+  font-weight: bold;
+  height: 5vh;
+  text-decoration: none;
+  margin-top: 2rem;
 }
