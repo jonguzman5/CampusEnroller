@@ -4,8 +4,6 @@ import '../../css/Student.css';
 import StudentImage from './StudentImage';
 import StudentName from './StudentName';
 import StudentDesc from './StudentDesc';
-import SelectCampus from './SelectCampus';
-import AddToCampus from './AddToCampus';
 
 class Student extends Component {
   render(){
@@ -26,9 +24,15 @@ class Student extends Component {
               </div>
             </div>
           </div>
-          <div className="box box2">
-            <SelectCampus/>
-            <AddToCampus/>
+          <div className="box box3">
+            <div className="item item3">
+              <select>
+                <option value="">Select campus...</option>
+                <option value="">Campus 1</option>
+                <option value="">Campus 2</option>
+              </select>
+              <NavLink to="/Campus"><button>Add to Campus</button></NavLink>
+            </div>
           </div>
         </div>
       </div>
