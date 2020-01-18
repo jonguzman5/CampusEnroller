@@ -17,14 +17,16 @@ class EditCampusForm extends Component {
 
   render(){
     return (
-      <form className="new-campus-form" onSubmit={this.handleSubmit}>
-        <h1>Edit Campus Form</h1>
-        <label>Campus Name <input type='text' onChange={this.handleChange}/></label>
-        <label>Campus Location <input type='text' onChange={this.handleChange}/></label>
-        <label>Campus Image URL <input type='text' onChange={this.handleChange}/></label>
-        <label>Campus Description <input type='text' onChange={this.handleChange}/></label>
-        <input type='submit' value="Save Changes"/> {/*ADD REDIRECT TO /CAMPUSES*/}
-      </form>
+      <div className="editcampusform-container">
+        <form onSubmit={this.handleSubmit}>
+          <h1>Edit Campus Form</h1>
+          <label>Campus Name <input type='text' onChange={this.handleChange}/></label>
+          <label>Campus Location <input type='text' onChange={this.handleChange}/></label>
+          <label>Campus Image URL <input type='text' onChange={this.handleChange}/></label>
+          <label>Campus Description <input type='text' onChange={this.handleChange}/></label>
+          <input type='submit' value="Save Changes"/> {/*ADD REDIRECT TO /CAMPUSES*/}
+        </form>
+      </div>
     );
   }
 }
