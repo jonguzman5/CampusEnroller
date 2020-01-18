@@ -89,19 +89,30 @@
 }
 /**********************************************************************/
 
-.new-student-form {
+.newstudentform-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  /*border: 10px solid goldenrod;*/
 }
 
-.new-student-form input[type=text] {
+.newstudentform-container form {
+  display: flex;
+  width: 50vw;
+  height: 50vh;
+  background-color: darkgrey;
+  flex-direction: column;
+  align-items: center;
+  /*border: 10px solid red;*/
+}
+
+.newstudentform-container form input[type=text] {
   width: 25vw;
   height: 5vh;
   border: 1px solid black;
 }
 
-.new-student-form input[type=submit] {
+.newstudentform-container form input[type=submit] {
   background-color: salmon;
   border: 2px solid #974E45;
   border-bottom: none;
@@ -109,4 +120,5 @@
   font-weight: bold;
   height: 5vh;
   text-decoration: none;
+  margin-top: 2rem;
 }
