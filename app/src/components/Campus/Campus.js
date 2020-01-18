@@ -22,6 +22,10 @@ class Campus extends Component {
             <div className="item item2">
               <CampusName/>
               <CampusDesc/>
+              <div className="buttons">
+                <NavLink to="/Campuses/EditCampusForm"><button>Edit</button></NavLink>
+                <button>Delete</button>
+              </div>
             </div>
           </div>
           <div className="box box2">
