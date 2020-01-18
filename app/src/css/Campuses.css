@@ -1,12 +1,13 @@
 .campuses-container {
   display: flex;
-  height: 100vh;
-  min-width: 100vh;
+  min-height: 100vh;
   flex-direction: column;
+  /*border: 10px solid black;*/
 }
 
 .campuses-header {
   display: flex;
+  min-height: 25vh;
   align-items: center;
 }
 
@@ -16,39 +17,40 @@
 }
 
 .campuses-header a button {
-  background-color: salmon;
   color: white;
-  border: 2px solid rgb(151, 78, 69);
+  background-color: salmon;
+  border: 2px solid #974514;
   border-bottom: none;
   border-radius: 16px;
   font-weight: bold;
   height: 5vh;
   width: 25vh;
-  flex: 1 0 25vw;
-  text-decoration: none;
 }
 
-.campuses-container button:hover {
+.campuses-container a button:hover {
   cursor: pointer;
-  background-color: rgb(151, 78, 69);
+  background-color: #974E45;
 }
 
 .campuscard-container {
   display: flex;
-  height: 75vh;
+  min-height: 75vh;
   flex-wrap: wrap;
   justify-content: space-around;
+  /*border: 10px solid goldenrod;*/
 }
 
 .campuscard-container > * {
-  flex: 1;
-  width: 50vw;
+  flex: 0 0 35vw;
+  margin-bottom: 2rem;
 }
 
 /**********************************************************************/
 
 .campuscard-container .campuscard {
   text-align: center;
+  background-color: darkgrey;
+  /*border: 5px solid red;*/
 }
 
 .campuscard-container .campuscard a h4 {
@@ -56,30 +58,25 @@
   color: #0000EE;
   text-decoration: underline;
   font-size: 1rem;
-  border: none;
-  text-align: center;
 }
 
 .campuscard-container .campuscard a h4:visited {
   color: #551A8B;
 }
 
-.campuscard-container .campuscard li {
-  color: #0000EE;
-  padding: 0;
-  text-decoration: underline;
-  font-size: 1rem;
-  border: none;
-}
-
 .campuscard-container .campuscard img {
-/*  max-width: 30vw;
-  max-height: 30vh;*/
+  width: 20vw;
+  height: 20vh;
+  text-align: center;
+  padding-top: 2rem;
+}
+.campuscard-container .campuscard .buttons {
+  padding-bottom: 1rem;
 }
 
 .campuscard-container .campuscard .buttons button {
-  background-color: rgb(221, 9, 9);
-  border: 2px solid rgb(114, 21, 4);
+  background-color: #DD0909;
+  border: 2px solid #721504;
   border-bottom: none;
   border-radius: 16px;
   font-weight: bold;
@@ -88,7 +85,7 @@
 }
 
 .campuscard-container .campuscard .buttons button:hover {
-  background-color: rgb(70, 13, 3);
+  background-color: #460D03;
 }
 /**********************************************************************/
 
@@ -97,6 +94,7 @@
   flex-direction: column;
   align-items: center;
 }
+
 .new-campus-form input[type=text] {
   width: 25vw;
   height: 5vh;
@@ -105,7 +103,7 @@
 
 .new-campus-form input[type=submit] {
   background-color: salmon;
-  border: 2px solid rgb(151, 78, 69);
+  border: 2px solid #974E45;
   border-bottom: none;
   border-radius: 16px;
   font-weight: bold;
