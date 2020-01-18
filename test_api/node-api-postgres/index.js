@@ -18,6 +18,8 @@ app.get('/', (request, response) => {
 
 app.get('/students', db.getStudents)
 app.get('/campuses', db.getCampuses)
+app.get('/students/:id', db.getStudentById)
+app.get('/campuses/:id', db.getCampusById)
 // app.get('/users', db.getUsers)
 // app.get('/users/:id', db.getUserById)
 // app.post('/users', db.createUser)

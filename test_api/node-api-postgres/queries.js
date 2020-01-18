@@ -25,10 +25,21 @@ const getStudents = (request, response) => {
   })
 }
 
-const getUserById = (request, response) => {
+const getStudentById = (request, response) => {
     const id = parseInt(request.params.id)
   
-    pool.query('SELECT * FROM users WHERE id = $1', [id], (error, results) => {
+    pool.query('SELECT * FROM students WHERE id = $1', [id], (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).json(results.rows)
+    })
+}
+
+const getCampusById = (request, response) => {
+    const id = parseInt(request.params.id)
+  
+    pool.query('SELECT * FROM campuses WHERE id = $1', [id], (error, results) => {
       if (error) {
         throw error
       }
@@ -76,5 +87,7 @@ const deleteUser = (request, response) => {
 
 module.exports = {
     getCampuses,
-    getStudents
+    getStudents,
+    getCampusById,
+    getStudentById
 }
