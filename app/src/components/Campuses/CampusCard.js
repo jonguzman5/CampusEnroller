@@ -8,8 +8,6 @@ class CampusCard extends Component {
     super(props)
   }
 
-  
-
   numStudents = () => {
     return "num";
   }

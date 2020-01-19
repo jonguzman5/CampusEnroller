@@ -14,13 +14,9 @@ body {
   height: 50vh;
 }
 
-.item2 h1 {
-  font-size: 2rem;
-  margin-top: 1rem;
-}
-
-.item2 p {
-  font-size: 1rem;
+.item1 {
+  flex: 1 1 25vw;
+  /*border: 10px solid red;*/
 }
 
 .item1 img {
@@ -28,14 +24,36 @@ body {
   margin-right: 2rem;
 }
 
-.item1 p {
+.item2 {
+  flex: 1 5 75vw;
+  display: flex;
+  flex-direction: column;
+  /*border: 10px solid black;*/
+}
+
+.item2 h1 {
+  font-size: 2rem;
+  margin-top: 1rem;
+}
+
+.item2 p {
   font-size: 1rem;
   height: 10vh;
 }
 
-.item2 {
-  display: flex;
-  flex-direction: column;
+.item2 .buttons {
+  align-self: flex-end;
+  padding-top: 5rem;
+}
+
+.item2 .buttons button{
+  background-color: #DD0909;
+  border: 2px solid #721504;
+  border-bottom: none;
+  border-radius: 16px;
+  font-weight: bold;
+  height: 5vh;
+  border-bottom: none;
 }
 
 .box2 {
