@@ -18,7 +18,7 @@ class Campuses extends Component {
 
   getCampusData = () => {
 
-    axios.get('http://localhost:3000/campuses').then((response) => {
+    axios.get('http://localhost:3003/campuses').then((response) => {
       this.setCampusData(response.data);
     })
 

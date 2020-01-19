@@ -7,7 +7,7 @@ class EditCampusForm extends Component {
   }
 
   handleSubmit = () => {
-    console.log('editng school in database...');
+    console.log(this.props.id)
   }
 
   handleChange = (e) => {
