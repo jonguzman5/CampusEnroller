@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
+import axios from 'axios'
 import '../../css/Campuses.css'
 import CampusCard from './CampusCard'
 
@@ -16,26 +17,34 @@ class Campuses extends Component {
   }
 
   getCampusData = () => {
-    return fetch(`http://localhost:3000/campuses`).then((response) => {
-            if(response.status === 200) {
-                return response.json()
-            } else {
-                throw new Error('Couldn\'t connect to server')
-            }
-        }).then((data) => {
-            return data
-        })
+
+    axios.get('http://localhost:3000/campuses').then((response) => {
+      console.log('Making request')
+      console.log(response.data)
+      this.setCampusData(response.data);
+    })
+
+
+    // return fetch(`http://localhost:3000/campuses`).then((response) => {
+    //         if(response.status === 200) {
+    //             return response.json()
+    //         } else {
+    //             throw new Error('Couldn\'t connect to server')
+    //         }
+    //     }).then((data) => {
+    //         return data
+    //     })
+
+
   }
 
-  setCampusData = () => {
-    this.getCampusData().then((data) => {
-            
+  setCampusData = (data) => {
+           
       let names = []
       let imageUrls = []
       let ids = []
       let campusInfo = []
       
-      console.log(data)
       for(let i = 0; i < data.length; i++){
           names.push(data[i].name)
           imageUrls.push(data[i].imageurl)
@@ -53,13 +62,10 @@ class Campuses extends Component {
       this.setState({
         campusCardInfo: campusInfo
       })
-
-  }).catch((err) => {
-      console.log(err.message)
-  })
   }
 
   getCampuses = () => {
+    
     return this.state.campusCardInfo.map( (info) => {
       return (
           <CampusCard
@@ -73,7 +79,7 @@ class Campuses extends Component {
   
   render(){
 
-    this.setCampusData();
+    this.getCampusData();
 
     return (
       <div className="campuses-container">

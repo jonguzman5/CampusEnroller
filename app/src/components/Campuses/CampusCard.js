@@ -22,7 +22,6 @@ class CampusCard extends Component {
         <div className="buttons">
           <NavLink to="/Campuses/EditCampusForm"><button>Edit</button></NavLink>
           <button>Delete</button>
-
         </div>
       </div>
     );
