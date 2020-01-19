@@ -80,6 +80,18 @@ const addCampusToStudent = (request, response) => {
   })
 }
 
+const addStudenttoCampus = (request, response) => {
+  const id = parseInt(request.params.id);
+  const { firstname, lastname } = request.body;
+
+  db.query(`INSERT INTO studentscampusrelationship (studentid, campusid) VALUES ((SELECT studentid FROM students WHERE (firstname = $1 AND lastname = $2)), $3)`,  [firstname, lastname, id], (error, results) => {
+      if(error) {
+          throw error
+      }
+      response.status(201).send(`Student added ${results}`)
+  })
+}
+
 const updateCampus = (request, response) => {
     const id = parseInt(request.params.id)
     const { name, imageurl, address, description } = request.body
@@ -144,6 +156,7 @@ module.exports = {
     deleteStudent,
     deleteCampus,
     addCampusToStudent,
+    addStudenttoCampus,
     updateStudent,
     updateCampus
 }
