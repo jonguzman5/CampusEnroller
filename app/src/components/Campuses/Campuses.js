@@ -3,12 +3,16 @@ import { NavLink } from 'react-router-dom'
 import axios from 'axios'
 import '../../css/Campuses.css'
 import CampusCard from './CampusCard'
+import EditCampusForm from './EditCampusForm'
+import CampusesAbsent from './CampusesAbsent'
+import CampusesPresent from './CampusesPresent'
 
 class Campuses extends Component {
   constructor(props){
     super(props)
     this.state = {
-        campusCardInfo: []
+        campusCardInfo: [],
+        edit: false
     }
   }
 
@@ -37,12 +41,12 @@ class Campuses extends Component {
   }
 
   setCampusData = (data) => {
-           
+
       let names = []
       let imageUrls = []
       let ids = []
       let campusInfo = []
-      
+
       for(let i = 0; i < data.length; i++){
           names.push(data[i].name)
           imageUrls.push(data[i].imageurl)
@@ -63,7 +67,7 @@ class Campuses extends Component {
   }
 
   getCampuses = () => {
-    
+
     let key = 0;
     return this.state.campusCardInfo.map( (info) => {
       ++key;
@@ -77,22 +81,26 @@ class Campuses extends Component {
       );
     });
   }
-  
+
   render(){
-
     this.getCampusData();
-
-    return (
-      <div className="campuses-container">
-        <div className="campuses-header">
-          <h3>All Campuses</h3>
-          <NavLink to="/Campuses/NewCampusForm"><button>Add Campus</button></NavLink>
-        </div>
-        <div className="campuscard-container">
-          {this.getCampuses()}
-        </div>
-      </div>
-    );
+    if(!this.state.edit){
+      if(this.state.campusCardInfo.length === 0){
+        return (
+          <CampusesAbsent/>
+        )
+      }
+      else {
+        return (
+          <CampusesPresent getCampuses={this.getCampuses}/>
+        );
+      }
+    }
+    else {
+      return (
+        <EditCampusForm/>
+      )
+    }
   }
 }
 
