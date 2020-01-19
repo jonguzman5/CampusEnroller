@@ -47,6 +47,39 @@ const getCampusById = (request, response) => {
     })
 }
 
+const createCampus = (request, response) => {
+  const { name, imageurl, address, description } = request.body
+
+  pool.query(`INSERT INTO users (name, imageurl, address, description) VALUES ($1, $2)`, [name, imageurl, address, description], (error, results) => {
+      if (error) {
+          throw error
+      }
+      response.status(201).send(`Campus added with ID: ${results.insertId}`)
+  })
+}
+
+const createStudent = (request, response) => {
+  const { firstname, lastname, email, imageurl, gpa } = request.body
+
+  pool.query(`INSERT INTO users (firstname, lastname, email, imageurl, gpa) VALUES ($1, $2)`, [firstname, lastname, email, imageurl, gpa], (error, results) => {
+      if (error) {
+          throw error
+      }
+      response.status(201).send(`Student added with ID: ${results.insertId}`)
+  })
+}
+
+const addCampusToStudent = (request, response) => {
+  const id = parseInt(request.params.id);
+  const  {name} = request.body;
+  db.query(`INSERT INTO studentscampusrelationship (studentid, campusid) VALUES ($1, (SELECT campusid FROM campus WHERE name = $2))`,  [id, name], (error, results) => {
+      if(error) {
+          throw error
+      }
+      response.status(201).send(`campus added ${results}`)
+  })
+}
+
 const createUser = (request, response) => {
     const { name, email } = request.body
 
@@ -89,5 +122,8 @@ module.exports = {
     getCampuses,
     getStudents,
     getCampusById,
-    getStudentById
+    getStudentById,
+    createCampus,
+    createStudent,
+    addCampusToStudent
 }
