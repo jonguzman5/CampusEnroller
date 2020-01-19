@@ -19,8 +19,6 @@ class Campuses extends Component {
   getCampusData = () => {
 
     axios.get('http://localhost:3000/campuses').then((response) => {
-      console.log('Making request')
-      console.log(response.data)
       this.setCampusData(response.data);
     })
 
@@ -66,9 +64,12 @@ class Campuses extends Component {
 
   getCampuses = () => {
     
+    let key = 0;
     return this.state.campusCardInfo.map( (info) => {
+      ++key;
       return (
           <CampusCard
+              key={key}
               id={info.id}
               name={info.name}
               imageUrl={info.imageUrl}

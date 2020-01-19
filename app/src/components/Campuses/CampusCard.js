@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import axios from 'axios';
 import '../../css/Campuses.css'
 
 class CampusCard extends Component {
@@ -13,6 +14,13 @@ class CampusCard extends Component {
     return "num";
   }
 
+  deleteCampus = () => {
+    axios.delete(`http://localhost:3000/campuses/delete/${this.props.id}`)
+      .then(res => {
+        console.log(res.data);
+      })
+  }
+
   render = () => {
     return (
       <div className="campuscard">
@@ -21,7 +29,7 @@ class CampusCard extends Component {
         <p>{this.numStudents() + " Students"}</p>
         <div className="buttons">
           <NavLink to="/Campuses/EditCampusForm"><button>Edit</button></NavLink>
-          <button>Delete</button>
+          <button onClick={this.deleteCampus}>Delete</button>
         </div>
       </div>
     );
