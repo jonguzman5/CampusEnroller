@@ -3,13 +3,17 @@ import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 import '../../css/Students.css';
 import StudentCard from './StudentCard';
-//import Student from '../Student/Student';
+import StudentsAbsent from './StudentsAbsent';
+import StudentsPresent from './StudentsPresent'
+import EditStudentForm from '../Student/EditStudentForm'
+
 
 class Students extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      studentCardInfo: []
+      studentCardInfo: [],
+      edit: false
     }
   }
 
@@ -20,12 +24,12 @@ class Students extends Component {
   }
 
   setStudentData = (data) => {
-           
+
     let names = []
     let imageUrls = []
     let ids = []
     let studentInfo = []
-    
+
     for(let i = 0; i < data.length; i++){
 
         names.push(data[i].firstname + " " + data[i].lastname)
@@ -52,32 +56,34 @@ class Students extends Component {
       ++key;
       return (
         <StudentCard
-        key={key}
-        id={info.id}
-        name={info.name}
-        imageUrl={info.imageUrl}
+          key={key}
+          id={info.id}
+          name={info.name}
+          imageUrl={info.imageUrl}
         />
       );
     });
   }
 
   render(){
-    //const prop = this.props.thing
-
     this.getStudentData();
-
-    return (
-      <div className="students-container">
-        <div className="students-header">
-          <h3>All Students</h3>
-          <NavLink to="/Students/NewStudentForm"><button>Add Student</button></NavLink>
-        </div>
-        <div className="studentcard-container">
-          {this.getStudents()}
-          
-        </div>
-      </div>
-    );
+    if(!this.state.edit){
+      if(this.state.studentCardInfo.length === 0){
+        return (
+          <StudentsAbsent/>
+        )
+      }
+      else {
+        return (
+          <StudentsPresent getStudents={this.getStudents}/>
+        )
+      }
+    }
+    else {
+      return (
+        <EditStudentForm/>
+      )
+    }
   }
 }
 
