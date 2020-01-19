@@ -50,7 +50,7 @@ const getCampusById = (request, response) => {
 const createCampus = (request, response) => {
   const { name, imageurl, address, description } = request.body
 
-  pool.query(`INSERT INTO users (name, imageurl, address, description) VALUES ($1, $2)`, [name, imageurl, address, description], (error, results) => {
+  pool.query(`INSERT INTO campuses (name, imageurl, address, description) VALUES ($1, $2, $3, $4)`, [name, imageurl, address, description], (error, results) => {
       if (error) {
           throw error
       }
@@ -61,7 +61,7 @@ const createCampus = (request, response) => {
 const createStudent = (request, response) => {
   const { firstname, lastname, email, imageurl, gpa } = request.body
 
-  pool.query(`INSERT INTO users (firstname, lastname, email, imageurl, gpa) VALUES ($1, $2)`, [firstname, lastname, email, imageurl, gpa], (error, results) => {
+  pool.query(`INSERT INTO students (firstname, lastname, email, imageurl, gpa) VALUES ($1, $2, $3, $4, $5)`, [firstname, lastname, email, imageurl, gpa], (error, results) => {
       if (error) {
           throw error
       }
@@ -76,45 +76,61 @@ const addCampusToStudent = (request, response) => {
       if(error) {
           throw error
       }
-      response.status(201).send(`campus added ${results}`)
+      response.status(201).send(`Campus added ${results}`)
   })
 }
 
-const createUser = (request, response) => {
-    const { name, email } = request.body
-
-    pool.query(`INSERT INTO users (name, email) VALUES ($1, $2)`, [name, email], (error, results) => {
-        if (error) {
-            throw error
-        }
-        response.status(201).send(`User added with ID: ${results.insertId}`)
-    })
-}
-
-const updateUser = (request, response) => {
+const updateCampus = (request, response) => {
     const id = parseInt(request.params.id)
-    const { name, email } = request.body
+    const { name, imageurl, address, description } = request.body
   
     pool.query(
-      'UPDATE users SET name = $1, email = $2 WHERE id = $3',
-      [name, email, id],
+      'UPDATE campuses SET name = $1, imageurl = $2, address = $3, description = $4 WHERE id = $5',
+      [ name, imageurl, address, description, id ],
       (error, results) => {
         if (error) {
           throw error
         }
-        response.status(200).send(`User modified with ID: ${id}`)
+        response.status(200).send(`Campus modified with ID: ${id}`)
       }
     )
 }
 
-const deleteUser = (request, response) => {
+const updateStudent = (request, response) => {
+    const id = parseInt(request.params.id)
+    const { firstname, lastname, email, imageurl, gpa } = request.body
+  
+    pool.query(
+      'UPDATE users SET firstname = $1, lastname = $2, email = $3, imageurl = $4, gpa = $5 WHERE id = $6',
+      [firstname, lastname, email, imageurl, gpa, id],
+      (error, results) => {
+        if (error) {
+          throw error
+        }
+        response.status(200).send(`Student modified with ID: ${id}`)
+      }
+    )
+}
+
+const deleteCampus = (request, response) => {
     const id = parseInt(request.params.id)
   
-    pool.query('DELETE FROM users WHERE id = $1', [id], (error, results) => {
+    pool.query('DELETE FROM campuses WHERE id = $1', [id], (error, results) => {
       if (error) {
         throw error
       }
-      response.status(200).send(`User deleted with ID: ${id}`)
+      response.status(200).send(`Student deleted with ID: ${id}`)
+    })
+}
+
+const deleteStudent = (request, response) => {
+    const id = parseInt(request.params.id)
+  
+    pool.query('DELETE FROM students WHERE id = $1', [id], (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).send(`Student deleted with ID: ${id}`)
     })
 }
 
@@ -125,5 +141,9 @@ module.exports = {
     getStudentById,
     createCampus,
     createStudent,
-    addCampusToStudent
+    deleteStudent,
+    deleteCampus,
+    addCampusToStudent,
+    updateStudent,
+    updateCampus
 }
