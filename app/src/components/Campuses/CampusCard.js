@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import '../../css/Campuses.css'
 
-function CampusCard(){
-  //const image = this.props.image;
-  const image = "https://3.bp.blogspot.com/-3vLsuHApBVE/V-KWrzRyhdI/AAAAAAAAC8s/dPkukqRowAQfGx8aCvU2LlsyWIoNJyAvQCEw/s640/harvard%2Buniversity%2BHD%2Bwallpaper%2B1.jpg"//placeholder
-  //const image = this.props.name;
-  const name = "Campus Name";
-  //const num = this.props.num;
-  const num = "NUM";
+function CampusCard(props){
+  
+  const name = props.name;
+  const image = props.imageUrl;
+  const num = "NUM"
+  // const num = props.students.length;
 
   return (
     <div className="campuscard">
