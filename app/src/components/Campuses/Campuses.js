@@ -32,18 +32,21 @@ class Campuses extends Component {
             
       let names = []
       let imageUrls = []
+      let ids = []
       let campusInfo = []
       
       console.log(data)
       for(let i = 0; i < data.length; i++){
           names.push(data[i].name)
           imageUrls.push(data[i].imageurl)
+          ids.push(data[i].id)
       }
 
       for(let i = 0; i < names.length; i++) {
         campusInfo.push({
           name: names[i],
-          imageUrl: imageUrls[i]
+          imageUrl: imageUrls[i],
+          id: ids[i]
         })
       }
 
@@ -60,6 +63,7 @@ class Campuses extends Component {
     return this.state.campusCardInfo.map( (info) => {
       return (
           <CampusCard
+              id={info.id}
               name={info.name}
               imageUrl={info.imageUrl}
           />

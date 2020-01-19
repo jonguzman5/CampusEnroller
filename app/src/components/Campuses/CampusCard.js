@@ -2,24 +2,32 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import '../../css/Campuses.css'
 
-function CampusCard(props){
-  
-  const name = props.name;
-  const image = props.imageUrl;
-  const num = "NUM"
-  // const num = props.students.length;
+class CampusCard extends Component {
+  constructor(props){
+    super(props)
+  }
 
-  return (
-    <div className="campuscard">
-      <img src={image}></img>
-      <a><h4>{name}</h4></a>
-      <p>{num} Students</p>
-      <div className="buttons">
-        <NavLink to="/Campuses/EditCampusForm"><button>Edit</button></NavLink>
-        <button>Delete</button>
+  
+
+  numStudents = () => {
+    return "num";
+  }
+
+  render = () => {
+    return (
+      <div className="campuscard">
+        <img src={this.props.imageUrl}></img>
+        <a><h4>{this.props.name}</h4></a>
+        <p>{this.numStudents() + " Students"}</p>
+        <div className="buttons">
+          <NavLink to="/Campuses/EditCampusForm"><button>Edit</button></NavLink>
+          <button>Delete</button>
+
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
+
 
 export default CampusCard;

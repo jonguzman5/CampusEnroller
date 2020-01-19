@@ -6,9 +6,8 @@ const db = require('./queries')
 const port = 3000
 
 
-
+// This method allows the apps to exchange information
 app.use(cors());
-
 app.use(bodyParser.json())
 app.use(
     bodyParser.urlencoded({
@@ -28,8 +27,8 @@ app.post('/students/:id', bodyParser.json(),db.addCampusToStudent)
 app.post('/campuses/:id', bodyParser.json(),db.addStudenttoCampus)
 app.post('/students', db.createStudent)
 app.post('/campuses', db.createCampus)
-app.delete('/students/:id', db.deleteStudent)
-app.delete('/campuses/:id', db.deleteCampus)
+app.delete('/students/delete/:id', db.deleteStudent)
+app.delete('/campuses/delete/:id', db.deleteCampus)
 app.put('/students/:id', db.updateStudent)
 app.put('/campuses/:id', db.updateCampus)
 
