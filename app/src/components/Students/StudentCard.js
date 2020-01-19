@@ -14,8 +14,8 @@ function StudentCard(){
   return (
     <div className="studentcard">
       <StudentImage/>
-      <a><h4>{name}</h4></a>
-      <a><h4>{campusName}</h4></a>
+      <NavLink to="/Student"><h4>{name}</h4></NavLink>
+      <NavLink to="/Campus"><h4>{campusName}</h4></NavLink>
     </div>
   );
 }
