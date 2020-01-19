@@ -19,6 +19,12 @@ class CampusCard extends Component {
       })
   }
 
+  handleClick = () => {
+    console.log(this.props.id)
+    this.props.changeEditInfo(this.props.id, this.props.name, this.props.address, this.props.imageUrl, this.props.description)
+    this.props.changeEdit()
+  }
+  
   render = () => {
     return (
       <div className="campuscard">
@@ -26,14 +32,7 @@ class CampusCard extends Component {
         <a><h4>{this.props.name}</h4></a>
         <p>{this.numStudents() + " Students"}</p>
         <div className="buttons">
-          <NavLink 
-            to={{
-              pathname: "/Campuses/EditCampusForm/",
-              props: {
-                id: this.props.id
-              }
-            }}
-            ><button>Edit</button></NavLink>
+          <button onClick={this.handleClick}>Edit</button>
           <button onClick={this.deleteCampus}>Delete</button>
         </div>
       </div>

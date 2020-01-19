@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import axios from 'axios'
 import '../../css/Campuses.css'
@@ -12,8 +12,27 @@ class Campuses extends Component {
     super(props)
     this.state = {
         campusCardInfo: [],
-        edit: false
+        edit: false,
+        editInfo: {}
     }
+  }
+
+  changeEditInfo = (id, name, address, imageUrl, description) => {
+    this.setState({
+      editInfo: {
+        id: id,
+        name: name,
+        address: address,
+        imageUrl: imageUrl,
+        description: description
+      }
+    })
+  }
+
+  changeEdit = () => {
+    this.setState({
+      edit: (!this.state.edit)
+    })
   }
 
   addCampus = () => {
@@ -45,18 +64,24 @@ class Campuses extends Component {
       let names = []
       let imageUrls = []
       let ids = []
+      let addresses = []
+      let descriptions = []
       let campusInfo = []
 
       for(let i = 0; i < data.length; i++){
           names.push(data[i].name)
           imageUrls.push(data[i].imageurl)
           ids.push(data[i].id)
+          addresses.push(data[i].address)
+          descriptions.push(data[i].description)
       }
 
       for(let i = 0; i < names.length; i++) {
         campusInfo.push({
           name: names[i],
+          address: addresses[i],
           imageUrl: imageUrls[i],
+          description: descriptions[i],
           id: ids[i]
         })
       }
@@ -77,6 +102,10 @@ class Campuses extends Component {
               id={info.id}
               name={info.name}
               imageUrl={info.imageUrl}
+              address={info.address}
+              description={info.description}
+              changeEditInfo={this.changeEditInfo}
+              changeEdit={this.changeEdit}
           />
       );
     });
@@ -98,8 +127,14 @@ class Campuses extends Component {
     }
     else {
       return (
-        <EditCampusForm/>
-      )
+        <EditCampusForm
+          id={this.state.editInfo.id}
+          name={this.state.editInfo.name}
+          address={this.state.editInfo.address}
+          imageurl={this.state.editInfo.imageUrl}
+          description={this.state.editInfo.description}
+        />
+      );
     }
   }
 }
