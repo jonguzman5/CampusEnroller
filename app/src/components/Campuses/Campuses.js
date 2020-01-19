@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import axios from 'axios'
 import '../../css/Campuses.css'
@@ -12,8 +12,22 @@ class Campuses extends Component {
     super(props)
     this.state = {
         campusCardInfo: [],
-        edit: false
+        edit: false,
+        editId: 0
     }
+  }
+
+  changeEditId = (id) => {
+    console.log(id)
+    this.setState({
+      editId: id
+    })
+  }
+
+  changeEdit = () => {
+    this.setState({
+      edit: (!this.state.edit)
+    })
   }
 
   addCampus = () => {
@@ -77,6 +91,8 @@ class Campuses extends Component {
               id={info.id}
               name={info.name}
               imageUrl={info.imageUrl}
+              changeEditId={this.changeEditId}
+              changeEdit={this.changeEdit}
           />
       );
     });
@@ -98,8 +114,10 @@ class Campuses extends Component {
     }
     else {
       return (
-        <EditCampusForm/>
-      )
+        <EditCampusForm
+          id={this.state.editId}
+        />
+      );
     }
   }
 }
