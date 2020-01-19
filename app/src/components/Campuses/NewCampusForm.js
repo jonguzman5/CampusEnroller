@@ -18,7 +18,7 @@ class NewCampusForm extends Component {
   render(){
     return (
       <div className="newcampusform-container">
-        <form onSubmit={this.handleSubmit} method="POST" action="http://localhost:3000/campuses">
+        <form onSubmit={this.handleSubmit} method="POST" action="http://localhost:3003/campuses">
           <h1>New Campus Form</h1>
           <h2>Campus Name</h2>
           <input type='text' name="name" onChange={this.handleChange}/>

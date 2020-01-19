@@ -13,7 +13,7 @@ class CampusCard extends Component {
   }
 
   deleteCampus = () => {
-    axios.delete(`http://localhost:3000/campuses/delete/${this.props.id}`)
+    axios.delete(`http://localhost:3003/campuses/delete/${this.props.id}`)
       .then(res => {
         console.log(res.data);
       })
@@ -26,7 +26,14 @@ class CampusCard extends Component {
         <a><h4>{this.props.name}</h4></a>
         <p>{this.numStudents() + " Students"}</p>
         <div className="buttons">
-          <NavLink to="/Campuses/EditCampusForm"><button>Edit</button></NavLink>
+          <NavLink 
+            to={{
+              pathname: "/Campuses/EditCampusForm/",
+              props: {
+                id: this.props.id
+              }
+            }}
+            ><button>Edit</button></NavLink>
           <button onClick={this.deleteCampus}>Delete</button>
         </div>
       </div>
