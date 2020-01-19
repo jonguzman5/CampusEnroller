@@ -21,7 +21,7 @@ class CampusCard extends Component {
 
   handleClick = () => {
     console.log(this.props.id)
-    this.props.changeEditId(this.props.id)
+    this.props.changeEditInfo(this.props.id, this.props.name, this.props.address, this.props.imageUrl, this.props.description)
     this.props.changeEdit()
   }
   
