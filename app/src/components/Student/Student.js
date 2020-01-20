@@ -4,23 +4,39 @@ import '../../css/Student.css';
 import StudentImage from './StudentImage';
 import StudentName from './StudentName';
 import StudentDesc from './StudentDesc';
+import axios from 'axios';
 
 class Student extends Component {
+  constructor(props){
+    super(props);
+  }
+
+  handleDeleteClick = () => {
+    axios.delete(`http://localhost:3003/students/delete/${this.props.id}`)
+      .then(res => {
+        console.log(res.data);
+        window.location.replace("http://localhost:3005/Students");
+      })
+  }
+
+  handleEditClick = () => {
+    console.log('Editing...')
+  }
+
   render(){
-    //const prop = this.props.thing
     return (
       <div>
         <div className="container">
           <div className="box box1">
             <div className="item item1">
-              <StudentImage/>
+              <StudentImage imageurl={this.props.imageurl}/>
             </div>
             <div className="item item2">
-              <StudentName/>
-              <StudentDesc/>
+              <StudentName name={this.props.name}/>
+              <StudentDesc desc={this.props.gpa}/>
               <div className="buttons">
-                <NavLink to="/Student/EditStudentForm"><button>Edit</button></NavLink>
-                <button>Delete</button>
+                <button onClick={this.handleEditClick}>Edit</button>
+                <button onClick={this.handleDeleteClick}>Delete</button>
               </div>
             </div>
           </div>

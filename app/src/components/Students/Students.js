@@ -6,6 +6,7 @@ import StudentCard from './StudentCard';
 import StudentsAbsent from './StudentsAbsent';
 import StudentsPresent from './StudentsPresent';
 import EditStudentForm from '../Student/EditStudentForm';
+import Student from '../Student/Student';
 
 
 class Students extends Component {
@@ -13,27 +14,26 @@ class Students extends Component {
     super(props);
     this.state = {
       studentCardInfo: [],
-      edit: false,
-      editInfo: {}
+      isSingle: false,
+      singleInfo: {}
     }
   }
 
-  changeEditInfo = (id, firstname, lastname, email, imageurl, gpa) => {
+  changeIsSingle = () => {
     this.setState({
-      editInfo : {
-        id: id,
-        firstname: firstname,
-        lastname: lastname,
-        email: email,
-        imageurl: imageurl,
-        gpa: gpa
-      }
+      isSingle: !(this.state.isSingle)
     })
   }
 
-  changeEdit = () => {
+  changeSingleInfo = (id, name, email, imageurl, gpa) => {
     this.setState({
-      edit: (!this.state.edit)
+      singleInfo: {
+        id: id,
+        name: name,
+        email: email,
+        imageurl: imageurl,
+        gpa: gpa 
+      }
     })
   }
 
@@ -73,9 +73,22 @@ class Students extends Component {
     this.setState({
       studentCardInfo: studentInfo
     })
-}
+  }
 
   getStudents = () => {
+
+    if(this.state.isSingle) {
+      return (
+        <Student
+          id={this.state.singleInfo.id}
+          name={this.state.singleInfo.name}
+          email={this.state.singleInfo.email}
+          imageurl={this.state.singleInfo.imageurl}
+          gpa={this.state.singleInfo.gpa}
+        />
+      );
+    }
+
     let key = 0;
     return this.state.studentCardInfo.map( (info) => {
       ++key;
@@ -87,8 +100,8 @@ class Students extends Component {
           email={info.email}
           imageurl={info.imageurl}
           gpa={info.gpa}
-          changeEditInfo={this.changeEditInfo}
-          changeEdit={this.changeEdit}
+          changeSingleInfo={this.changeSingleInfo}
+          changeIsSingle={this.changeIsSingle}
         />
       );
     });
@@ -96,7 +109,7 @@ class Students extends Component {
 
   render(){
     this.getStudentData();
-    if(!this.state.edit){
+    
       if(this.state.studentCardInfo.length === 0){
         return (
           <StudentsAbsent/>
@@ -107,18 +120,7 @@ class Students extends Component {
           <StudentsPresent getStudents={this.getStudents}/>
         )
       }
-    }
-    else {
-      return (
-        <EditStudentForm
-          id={this.state.editInfo.id}
-          name={this.state.editInfo.name}
-          email={this.state.editInfo.email}
-          imageurl={this.state.editInfo.imageurl}
-          gpa={this.state.editInfo.gpa}
-        />
-      )
-    }
+
   }
 }
 
