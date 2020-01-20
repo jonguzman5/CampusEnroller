@@ -1,11 +1,11 @@
 import React from 'react';
 import '../../css/Student.css';
 
-function StudentDesc(){
+function StudentDesc(props){
   //const desc = this.props.desc;
-  const desc = "GPA: 3.4";
+  const gpa = "GPA: " + (props.gpa);
   return (
-    <p>{desc}</p>
+    <p>{gpa}</p>
   );
 }
 
