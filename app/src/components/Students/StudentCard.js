@@ -1,24 +1,37 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import StudentImage from '../Student/StudentImage';
-import '../../css/Students.css'
+import axios from 'axios';
+import '../../css/Students.css';
+import CampusName from '../Campus/CampusName';
 
 class StudentCard extends Component {
-
   constructor(props) {
     super(props);
   }
 
-  render = () => {
-    const image = this.props.imageUrl;
-    const name = this.props.name;
-    const campusName = "Campus Name";
+  numStudents = () => {
+    return "num";
+  }
 
+  deleteCampus = () => {
+    axios.delete(`http://localhost:3003/students/delete/${this.props.id}`)
+      .then(res => {
+        console.log(res.data);
+      })
+  }
+
+  handleClick = () => {
+    console.log(this.props.id)
+    this.props.changeEditInfo(this.props.id, this.props.name, this.props.email, this.props.gpa)
+    this.props.changeEdit()
+  }
+
+  render = () => {
     return (
       <div className="studentcard">
-      <StudentImage imageUrl={image}/>
-      <NavLink to="/Student"><h4>{name}</h4></NavLink>
-      <NavLink to="/Campus"><h4>{campusName}</h4></NavLink>
+        <img src={this.props.imageurl}></img>
+        <a><h4>{this.props.name}</h4></a>
+        <a><h4>{CampusName}</h4></a>
       </div>
     );
   }
