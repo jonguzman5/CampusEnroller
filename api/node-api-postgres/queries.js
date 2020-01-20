@@ -18,10 +18,10 @@ const getCampuses = (request, response) => {
 
 const getNewestCampus = (request, response) => {
   pool.query('SELECT MAX(id) AS id FROM campuses', (error, results) => {
-    if(error) {
-      throw error
-    }
-    response.status(200).json(results.row)
+      if(error) {
+          throw error
+      }
+      response.status(200).json(results.rows)
   })
 }
 

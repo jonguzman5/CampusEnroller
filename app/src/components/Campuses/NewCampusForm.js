@@ -7,7 +7,7 @@ class NewCampusForm extends Component {
   constructor(props){
     super(props)
     this.state = {
-      renderNewCampus: false,
+      renderNewCampus: null,
       singleInfo: {},
       campusInfo: []
     };
@@ -40,41 +40,38 @@ class NewCampusForm extends Component {
         descriptions.push(data[i].description)
     }
 
-    for(let i = 0; i < names.length; i++) {
       campusInfo.push({
-        name: names[i],
-        address: addresses[i],
-        imageUrl: imageUrls[i],
-        description: descriptions[i],
-        id: ids[i]
+        name: names[0],
+        address: addresses[0],
+        imageUrl: imageUrls[0],
+        description: descriptions[0],
+        id: ids[0]
       })
-    }
 
+    console.log(campusInfo)
+    
     this.setState({
-      campusCardInfo: campusInfo
+      singleInfo: campusInfo[0]
     })
   }
 
   renderNewCampus = () => {
     this.setState({
-      renderNewCampus: !(this.state.renderNewCampus)
+      renderNewCampus: true
     })
 
     
-    // axios.get(`http://localhost:3003/campuses/new`).then((response) => {
+    axios.get(`http://localhost:3003/campuses/new`).then((response) => {
       
       
-    //   // console.log(response.data)
-    //   // // id = response.data[0].id;
+      console.log(response.data)
+      const id = response.data[0].id;
 
-    //   // axios.get(`http://localhost:3003/campuses/1`).then((res) => {
-    //   //   this.setCampusData(res.data);
-    //   // })
+      axios.get(`http://localhost:3003/campuses/${id}`).then((res) => {
+        this.setCampusData(res.data);
+      })
 
-    // })
-
-    
-
+    })
   }
 
   handleSubmit = (e) => {

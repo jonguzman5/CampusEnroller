@@ -21,9 +21,9 @@ app.get('/', (request, response) => {
 
 app.get('/students', db.getStudents)
 app.get('/campuses', db.getCampuses)
+app.get('/campuses/new', db.getNewestCampus)
 app.get('/students/:id', db.getStudentById)
 app.get('/campuses/:id', db.getCampusById)
-app.get('/campuses/new', db.getNewestCampus)
 app.post('/students/:id', bodyParser.json(),db.addCampusToStudent)
 app.post('/campuses/:id', bodyParser.json(),db.addStudenttoCampus)
 app.post('/students', db.createStudent)
