@@ -23,7 +23,7 @@ class Campus extends Component {
       isEdit: !(this.state.isEdit)
     })
   }
-  
+
   handleDeleteClick = () => {
     axios.delete(`http://localhost:3003/campuses/delete/${this.props.id}`)
       .then(res => {
@@ -42,10 +42,9 @@ class Campus extends Component {
         imageurl={this.props.imageurl}
         description={this.props.description}
         />
-      ); 
+      );
     } else {
       return (
-        <div>
           <div className="container">
             <div className="box box1">
               <div className="item item1">
@@ -85,10 +84,9 @@ class Campus extends Component {
               <StudentCard/>
             </div>
           </div>
-        </div>
       );
     }
-    
+
   }
 }
 

@@ -18,10 +18,11 @@ class NewStudentForm extends Component {
   render(){
     return (
       <div className="newstudentform-container">
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} method="POST" action="http://localhost:3003/students">
           <h1>New Student Form</h1>
           <h2>Student Name</h2>
           <input type='text' onChange={this.handleChange}/>
+          <input className="hide" value="http://clipart-library.com/new_gallery/142-1427672_college-students-images-hd-png-download-student-image.png" type='text' name="imageurl" onChange={this.handleChange}/>
           <input type='submit' value="Add Student"/> {/*ADD REDIRECT TO /STUDENTS*/}
         </form>
       </div>
