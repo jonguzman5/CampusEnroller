@@ -45,7 +45,6 @@ class Campus extends Component {
       ); 
     } else {
       return (
-        <div>
           <div className="container">
             <div className="box box1">
               <div className="item item1">
@@ -84,7 +83,6 @@ class Campus extends Component {
               <StudentCard/>
               <StudentCard/>
             </div>
-          </div>
         </div>
       );
     }

@@ -21,6 +21,7 @@ app.get('/', (request, response) => {
 
 app.get('/students', db.getStudents)
 app.get('/campuses', db.getCampuses)
+app.get('/campuses/new', db.getNewestCampus)
 app.get('/students/:id', db.getStudentById)
 app.get('/campuses/:id', db.getCampusById)
 app.post('/students/:id', bodyParser.json(),db.addCampusToStudent)
