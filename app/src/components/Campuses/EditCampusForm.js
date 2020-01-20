@@ -20,6 +20,25 @@ class EditCampusForm extends Component {
     });
   };
 
+  updateCampusInfo = (data, alertMessage) => {
+    axios({
+      method: 'put',
+      url: `http://localhost:3003/campuses/update/${this.props.id}`,
+      data: data
+    }).then(res => {
+        if(res.status === 200 ) {
+          alert(alertMessage)
+          console.log(res);
+          console.log(res.data);
+        } else {
+          throw new Error();
+        }
+        
+      }).catch((err) => {
+        console.log('CATCH! =' + err.response.data.errors)
+      });
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
 
@@ -32,22 +51,9 @@ class EditCampusForm extends Component {
         address: this.props.address,
         description: this.state.campusInfo.description
       } 
-      axios({
-        method: 'put',
-        url: `http://localhost:3003/campuses/update/${this.props.id}`,
-        data: updateCampus
-      }).then(res => {
-          if(res.status === 200 ) {
-            alert('ERROR: You can\'t leave "name" or "address" blank!')
-            console.log(res);
-            console.log(res.data);
-          } else {
-            throw new Error();
-          }
-          
-        }).catch((err) => {
-          console.log('CATCH! =' + err.response.data.errors)
-        });
+
+      this.updateCampusInfo(updateCampus, 'ERROR: You can\'t leave "name" or "address" blank!');
+
     } else if(!this.state.campusInfo.imageurl){
       updateCampus = {
         name: this.state.campusInfo.name,
@@ -56,22 +62,7 @@ class EditCampusForm extends Component {
         description: this.state.campusInfo.description
       }
 
-      axios({
-        method: 'put',
-        url: `http://localhost:3003/campuses/update/${this.props.id}`,
-        data: updateCampus
-      }).then(res => {
-          if(res.status === 200 ) {
-            alert("This campus has been successfully updated!")
-            console.log(res);
-            console.log(res.data);
-          } else {
-            throw new Error();
-          }
-          
-        }).catch((err) => {
-          console.log('CATCH! =' + err.response.data.errors)
-        });
+      this.updateCampusInfo(updateCampus, "This campus has been successfully updated!");
     } else {
       updateCampus = {
         name: this.state.campusInfo.name,
@@ -80,22 +71,7 @@ class EditCampusForm extends Component {
         description: this.state.campusInfo.description
       }
 
-      axios({
-        method: 'put',
-        url: `http://localhost:3003/campuses/update/${this.props.id}`,
-        data: updateCampus
-      }).then(res => {
-          if(res.status === 200 ) {
-            alert("This campus has been successfully updated!")
-            console.log(res);
-            console.log(res.data);
-          } else {
-            throw new Error();
-          }
-          
-        }).catch((err) => {
-          console.log('CATCH! =' + err.response.data.errors)
-        });
+      this.updateCampusInfo(updateCampus, "This campus has been successfully updated!");
     }
     // axios.put(`http://localhost:3003/campuses/update/${this.props.id}`, this.state.campusInfo)
     //   .then(res => {
