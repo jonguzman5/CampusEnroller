@@ -5,7 +5,7 @@ function CampusDesc(props){
   //const desc = this.props.desc;
   let desc = props.description;
 
-  if(!desc || desc.length === 0){
+  if(!desc || desc.length === 0 ){
     desc = "---"
   }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom'
 import '../../css/Campuses.css';
 
-function CampusesAbsent(props){
+function CampusesPresent(props){
   return (
     <div className="campuses-container">
       <div className="campuses-header">
@@ -16,4 +16,4 @@ function CampusesAbsent(props){
   );
 }
 
-export default CampusesAbsent;
+export default CampusesPresent;
