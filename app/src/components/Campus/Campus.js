@@ -9,21 +9,30 @@ import StudentCard from '../Students/StudentCard';
 //import Student from '../Student/Student';
 
 class Campus extends Component {
+  constructor(props) {
+    super(props);
+  }
   render(){
-    //const prop = this.props.thing
     return (
       <div>
         <div className="container">
           <div className="box box1">
             <div className="item item1">
-              <CampusImage/>
-              <CampusAddress/>
+              <CampusImage
+                imageUrl={this.props.imageurl}
+              />
+              <CampusAddress
+                address={this.props.address}
+              />
             </div>
             <div className="item item2">
-              <CampusName/>
-              <CampusDesc/>
+              <CampusName
+                name={this.props.name}
+              />
+              <CampusDesc
+                description={this.props.description}/>
               <div className="buttons">
-                <NavLink to="/Campuses/EditCampusForm"><button>Edit</button></NavLink>
+                <button>Edit</button>
                 <button>Delete</button>
               </div>
             </div>

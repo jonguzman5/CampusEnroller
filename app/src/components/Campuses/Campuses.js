@@ -6,6 +6,7 @@ import CampusCard from './CampusCard'
 import EditCampusForm from './EditCampusForm'
 import CampusesAbsent from './CampusesAbsent'
 import CampusesPresent from './CampusesPresent'
+import Campus from '../Campus/Campus'
 
 class Campuses extends Component {
   constructor(props){
@@ -13,7 +14,9 @@ class Campuses extends Component {
     this.state = {
         campusCardInfo: [],
         edit: false,
-        editInfo: {}
+        editInfo: {},
+        isSingle: false,
+        singleInfo: {}
     }
   }
 
@@ -29,9 +32,27 @@ class Campuses extends Component {
     })
   }
 
+  changeSingleInfo = (id, name, address, imageUrl, description) => {
+    this.setState({
+      singleInfo: {
+        id: id,
+        name: name,
+        address: address,
+        imageUrl: imageUrl,
+        description: description
+      }
+    })
+  }
+
   changeEdit = () => {
     this.setState({
       edit: (!this.state.edit)
+    })
+  }
+
+  changeIsSingle = () => {
+    this.setState({
+      isSingle: (!this.state.isSingle)
     })
   }
 
@@ -93,6 +114,18 @@ class Campuses extends Component {
 
   getCampuses = () => {
 
+    if(this.state.isSingle) {
+      return (
+        <Campus
+          id={this.state.singleInfo.id}
+          name={this.state.singleInfo.name}
+          address={this.state.singleInfo.address}
+          imageurl={this.state.singleInfo.imageUrl}
+          description={this.state.singleInfo.description}
+        />
+      );
+
+    }
     let key = 0;
     return this.state.campusCardInfo.map( (info) => {
       ++key;
@@ -106,6 +139,8 @@ class Campuses extends Component {
               description={info.description}
               changeEditInfo={this.changeEditInfo}
               changeEdit={this.changeEdit}
+              changeSingleInfo={this.changeSingleInfo}
+              changeIsSingle={this.changeIsSingle}
           />
       );
     });

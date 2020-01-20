@@ -1,9 +1,14 @@
 import React from 'react';
 import '../../css/Campus.css';
 
-function CampusDesc(){
+function CampusDesc(props){
   //const desc = this.props.desc;
-  const desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum explicabo reprehenderit optio amet ab temporibus asperiores quasi cupiditate. Voluptatum ducimus voluptates voluptas?";
+  let desc = props.description;
+
+  if(desc.length === 0 || !desc){
+    desc = "---"
+  }
+
   return (
     <p>{desc}</p>
   );
