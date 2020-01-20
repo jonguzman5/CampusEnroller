@@ -7,11 +7,12 @@ class EditStudentForm extends Component {
   }
 
   handleSubmit = () => {
-    console.log('editing student in database...');
+    console.log(this.props.id);
   }
 
   handleChange = (e) => {
     console.log(e.target.value);
+    console.log(this.props.id);
     //this.setState({school: e.target.value});
   }
 
@@ -20,9 +21,10 @@ class EditStudentForm extends Component {
       <div className="editstudentform-container">
         <form onSubmit={this.handleSubmit}>
           <h1>Edit Student Form</h1>
-          <label>Student Name <input type='text' onChange={this.handleChange}/></label>
-          <label>GPA <input type='text' onChange={this.handleChange}/></label>
-          <label>Student URL <input type='text' onChange={this.handleChange}/></label>
+          <label>Student Name <input type='text' placeholder={this.props.name} onChange={this.handleChange}/></label>
+          <label>GPA <input type='text' placeholder={this.props.gpa} onChange={this.handleChange}/></label>
+          <label>Student Image URL <input type='text'placeholder={this.props.imageurl} onChange={this.handleChange}/></label>
+          <input className="hide" name="id" value={this.props.id} readOnly></input>
           <input type='submit' value="Save Changes"/> {/*ADD REDIRECT TO /CAMPUSES*/}
         </form>
       </div>

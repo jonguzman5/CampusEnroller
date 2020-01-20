@@ -4,8 +4,8 @@ import axios from 'axios';
 import '../../css/Students.css';
 import StudentCard from './StudentCard';
 import StudentsAbsent from './StudentsAbsent';
-import StudentsPresent from './StudentsPresent'
-import EditStudentForm from '../Student/EditStudentForm'
+import StudentsPresent from './StudentsPresent';
+import EditStudentForm from '../Student/EditStudentForm';
 
 
 class Students extends Component {
@@ -13,8 +13,28 @@ class Students extends Component {
     super(props);
     this.state = {
       studentCardInfo: [],
-      edit: false
+      edit: false,
+      editInfo: {}
     }
+  }
+
+  changeEditInfo = (id, firstname, lastname, email, imageurl, gpa) => {
+    this.setState({
+      editInfo : {
+        id: id,
+        firstname: firstname,
+        lastname: lastname,
+        email: email,
+        imageurl: imageurl,
+        gpa: gpa
+      }
+    })
+  }
+
+  changeEdit = () => {
+    this.setState({
+      edit: (!this.state.edit)
+    })
   }
 
   getStudentData = () => {
@@ -25,23 +45,28 @@ class Students extends Component {
 
   setStudentData = (data) => {
 
-    let names = []
-    let imageUrls = []
     let ids = []
+    let names = []
+    let emails = []
+    let imageurls = []
+    let gpas = []
     let studentInfo = []
 
     for(let i = 0; i < data.length; i++){
-
-        names.push(data[i].firstname + " " + data[i].lastname)
-        imageUrls.push(data[i].imageurl)
         ids.push(data[i].id)
+        names.push(data[i].firstname + " " + data[i].lastname)
+        emails.push(data[i].email)
+        imageurls.push(data[i].imageurl)
+        gpas.push(data[i].gpa)
     }
 
     for(let i = 0; i < names.length; i++) {
       studentInfo.push({
+        id: ids[i],
         name: names[i],
-        imageUrl: imageUrls[i],
-        id: ids[i]
+        email: emails[i],
+        imageurl: imageurls[i],
+        gpa: gpas[i]
       })
     }
 
@@ -59,7 +84,11 @@ class Students extends Component {
           key={key}
           id={info.id}
           name={info.name}
-          imageUrl={info.imageUrl}
+          email={info.email}
+          imageurl={info.imageurl}
+          gpa={info.gpa}
+          changeEditInfo={this.changeEditInfo}
+          changeEdit={this.changeEdit}
         />
       );
     });
@@ -81,7 +110,13 @@ class Students extends Component {
     }
     else {
       return (
-        <EditStudentForm/>
+        <EditStudentForm
+          id={this.state.editInfo.id}
+          name={this.state.editInfo.name}
+          email={this.state.editInfo.email}
+          imageurl={this.state.editInfo.imageurl}
+          gpa={this.state.editInfo.gpa}
+        />
       )
     }
   }
