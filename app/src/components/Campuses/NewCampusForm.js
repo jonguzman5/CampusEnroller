@@ -55,18 +55,30 @@ class NewCampusForm extends Component {
     })
   }
 
-  renderNewCampus = (id, data) => {
+  renderNewCampus = () => {
     this.setState({
       renderNewCampus: !(this.state.renderNewCampus)
     })
 
-    axios.get(`http://localhost:3003/campuses/${id}`).then((response) => {
-      this.setCampusData(response.data);
-    })
+    
+    // axios.get(`http://localhost:3003/campuses/new`).then((response) => {
+      
+      
+    //   // console.log(response.data)
+    //   // // id = response.data[0].id;
+
+    //   // axios.get(`http://localhost:3003/campuses/1`).then((res) => {
+    //   //   this.setCampusData(res.data);
+    //   // })
+
+    // })
+
+    
 
   }
 
-  handleSubmit = () => {
+  handleSubmit = (e) => {
+    e.preventDefault();
     let newCampus = {
       name: this.state.campusInfo.name,
       imageurl: 'https://www.usnews.com/dims4/USNEWS/0b40ca9/17177859217/resize/800x540%3E/quality/85/?url=https%3A%2F%2Fmedia.beam.usnews.com%2Fed%2F49512dcc50e5394df36dccecb41082%2FUSNews18_MainHall.jpg',
@@ -79,18 +91,18 @@ class NewCampusForm extends Component {
       url: `http://localhost:3003/campuses/`,
       data: newCampus
     }).then((response) => {
-      this.renderNewCampus(response.statusText, response.data)
+      this.renderNewCampus()
     })
   }
 
-  handleClick = () => {
+  handleClick = (e) => {
     this.setState({
       renderNewCampus: !(this.state.renderNewCampus)
     })
-    this.handleSubmit();
+    this.handleSubmit(e);
   }
 
-  render(){
+  render = () => {
     if(this.state.renderNewCampus){
       return (
         <Campus
