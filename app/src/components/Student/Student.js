@@ -33,7 +33,7 @@ class Student extends Component {
             </div>
             <div className="item item2">
               <StudentName name={this.props.name}/>
-              <StudentDesc desc={this.props.gpa}/>
+              <StudentDesc gpa={this.props.gpa}/>
               <div className="buttons">
                 <button onClick={this.handleEditClick}>Edit</button>
                 <button onClick={this.handleDeleteClick}>Delete</button>
