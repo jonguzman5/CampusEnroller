@@ -158,3 +158,9 @@
   text-decoration: none;
   margin-top: 2rem;
 }
+
+/**************************************************************/
+
+.campuscard a:hover {
+  cursor: pointer;
+}

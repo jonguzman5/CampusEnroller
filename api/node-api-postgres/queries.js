@@ -113,7 +113,7 @@ const updateStudent = (request, response) => {
     const { firstname, lastname, email, imageurl, gpa } = request.body
   
     pool.query(
-      'UPDATE users SET firstname = $1, lastname = $2, email = $3, imageurl = $4, gpa = $5 WHERE id = $6',
+      'UPDATE students SET firstname = $1, lastname = $2, email = $3, imageurl = $4, gpa = $5 WHERE id = $6',
       [firstname, lastname, email, imageurl, gpa, id],
       (error, results) => {
         if (error) {

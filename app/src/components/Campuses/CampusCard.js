@@ -24,12 +24,18 @@ class CampusCard extends Component {
     this.props.changeEditInfo(this.props.id, this.props.name, this.props.address, this.props.imageUrl, this.props.description)
     this.props.changeEdit()
   }
+
+  handleCampusClick = () => {
+    console.log(this.props.id)
+    this.props.changeSingleInfo(this.props.id, this.props.name, this.props.address, this.props.imageUrl, this.props.description)
+    this.props.changeIsSingle();
+  }
   
   render = () => {
     return (
       <div className="campuscard">
         <img src={this.props.imageUrl}></img>
-        <a><h4>{this.props.name}</h4></a>
+        <a onClick={this.handleCampusClick}><h4>{this.props.name}</h4></a>
         <p>{this.numStudents() + " Students"}</p>
         <div className="buttons">
           <button onClick={this.handleClick}>Edit</button>
