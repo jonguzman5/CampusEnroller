@@ -11,7 +11,7 @@ class StudentCard extends Component {
 
   handleClick = () => {
     console.log(this.props.id)
-    this.props.changeSingleInfo(this.props.id, this.props.name, this.props.email, this.imageurl, this.props.gpa)
+    this.props.changeSingleInfo(this.props.id, this.props.name, this.props.email, this.props.imageurl, this.props.gpa)
     this.props.changeIsSingle();
   }
 

@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 import { NavLink } from 'react-router-dom'
 import '../../css/Student.css';
-import StudentImage from './StudentImage';
-import StudentName from './StudentName';
-import StudentDesc from './StudentDesc';
 import axios from 'axios';
 import EditStudentForm from './EditStudentForm';
+import CampusPresent from './CampusPresent';
+import CampusAbsent from './CampusAbsent';
 
 class Student extends Component {
   constructor(props){
@@ -24,14 +23,39 @@ class Student extends Component {
   }
 
   handleEditClick = () => {
-    console.log('Editing...')
+    this.setState({
+      isEdit: !(this.state.isEdit)
+    })
   }
 
-  render = () => {
-    if(this.state.isEdit) {
-
+  render(){
+    // this.getStudentData();
+    if(!this.state.isEdit) {
+      if(true){ {/*QUERY: this.state.RELQUERYRES.length === 0 */}
+        return (
+          <CampusAbsent
+            imageurl={this.props.imageurl}
+            name={this.props.name}
+            gpa={this.props.gpa}
+            handleEditClick={this.handleEditClick}
+            handleDeleteClick={this.handleDeleteClick}
+          />
+        )
+      }
+      else {
+        return (
+          <CampusPresent
+            imageurl={this.props.imageurl}
+            name={this.props.name}
+            gpa={this.props.gpa}
+            handleEditClick={this.handleEditClick}
+            handleDeleteClick={this.handleDeleteClick}
+          />
+        )
+      }
+    }
+    else {
       const fullName = this.props.name.split(' ');
-
       return (
         <EditStudentForm
           id={this.props.id}
@@ -41,38 +65,8 @@ class Student extends Component {
           imageurl={this.props.imageurl}
           gpa={this.props.gpa}
         />
-      );
-    } else {
-      return (
-        <div>
-          <div className="container">
-            <div className="box box1">
-              <div className="item item1">
-                <StudentImage imageurl={this.props.imageurl}/>
-              </div>
-              <div className="item item2">
-                <StudentName name={this.props.name}/>
-                <StudentDesc gpa={this.props.gpa}/>
-                <div className="buttons">
-                  <button onClick={this.handleEditClick}>Edit</button>
-                  <button onClick={this.handleDeleteClick}>Delete</button>
-                </div>
-              </div>
-            </div>
-            <div className="box box3">
-              <div className="item item3">
-                <select>
-                  <option value="">Select campus...</option>
-                  <option value="">Campus 1</option>
-                  <option value="">Campus 2</option>
-                </select>
-                <NavLink to="/Campus"><button>Add to Campus</button></NavLink>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-    }   
+      )
+    }
   }
 }
 
