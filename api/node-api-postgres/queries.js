@@ -54,7 +54,7 @@ const createCampus = (request, response) => {
       if (error) {
           throw error
       }
-      response.status(201).send(`Campus added with ID: ${results.insertId}`)
+      response.status(201).send(`${results.insertId}`)
   })
 }
 
