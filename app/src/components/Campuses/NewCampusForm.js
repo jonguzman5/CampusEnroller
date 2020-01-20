@@ -67,14 +67,12 @@ class NewCampusForm extends Component {
   }
 
   handleSubmit = () => {
-    let updateCampus = {
+    let newCampus = {
       name: this.state.campusInfo.name,
       imageurl: 'https://www.usnews.com/dims4/USNEWS/0b40ca9/17177859217/resize/800x540%3E/quality/85/?url=https%3A%2F%2Fmedia.beam.usnews.com%2Fed%2F49512dcc50e5394df36dccecb41082%2FUSNews18_MainHall.jpg',
       address: this.state.campusInfo.address,
       description: "{ENTER Campus Description HERE}"
     }
-
-    const newCampus = this.state.newCampusInfo
 
     axios({
       method: 'post',
@@ -83,6 +81,13 @@ class NewCampusForm extends Component {
     }).then((response) => {
       this.renderNewCampus(response.statusText, response.data)
     })
+  }
+
+  handleClick = () => {
+    this.setState({
+      renderNewCampus: !(this.state.renderNewCampus)
+    })
+    this.handleSubmit();
   }
 
   render(){
@@ -106,7 +111,7 @@ class NewCampusForm extends Component {
           <h2>Campus Address</h2>
           <input type='text' name="address" onChange={e => this.change(e)}/>
           <input className="hide" value="https://www.usnews.com/dims4/USNEWS/0b40ca9/17177859217/resize/800x540%3E/quality/85/?url=https%3A%2F%2Fmedia.beam.usnews.com%2Fed%2F49512dcc50e5394df36dccecb41082%2FUSNews18_MainHall.jpg" type='text' name="imageurl" onChange={this.handleChange}/>
-          <input type='submit' value="Add Campus"/> {/*ADD REDIRECT TO /CAMPUSES*/}
+          <input onClick={this.handleClick} type='submit' value="Add Campus"/> {/*ADD REDIRECT TO /CAMPUSES*/}
         </form>
       </div>
     );
