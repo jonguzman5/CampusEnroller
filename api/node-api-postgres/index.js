@@ -29,8 +29,8 @@ app.post('/students', db.createStudent)
 app.post('/campuses', db.createCampus)
 app.delete('/students/delete/:id', db.deleteStudent)
 app.delete('/campuses/delete/:id', db.deleteCampus)
-app.put('/students/:id', db.updateStudent)
-app.put('/campuses/:id', db.updateCampus)
+app.put('/students/update/:id', db.updateStudent)
+app.put('/campuses/update/:id', db.updateCampus)
 
 app.listen(port, () => {
     console.log(`App running on port ${port}.`)
