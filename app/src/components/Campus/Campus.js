@@ -61,6 +61,7 @@ class Campus extends Component {
                 />
                 <CampusDesc
                   description={this.props.description}/>
+        
                 <div className="buttons">
                   <button onClick={this.handleEditClick}>Edit</button>
                   <button onClick={this.handleDeleteClick}>Delete</button>

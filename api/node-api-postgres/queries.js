@@ -16,6 +16,15 @@ const getCampuses = (request, response) => {
     })
 }
 
+const getNewestCampus = (request, response) => {
+  pool.query('SELECT MAX(id) AS id FROM campuses', (error, results) => {
+      if(error) {
+          throw error
+      }
+      response.status(200).json(results.rows)
+  })
+}
+
 const getStudents = (request, response) => {
   pool.query('SELECT * FROM students ORDER BY id ASC', (error, results) => {
       if(error) {
@@ -158,5 +167,6 @@ module.exports = {
     addCampusToStudent,
     addStudenttoCampus,
     updateStudent,
-    updateCampus
+    updateCampus,
+    getNewestCampus
 }
