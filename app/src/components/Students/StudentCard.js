@@ -9,28 +9,17 @@ class StudentCard extends Component {
     super(props);
   }
 
-  numStudents = () => {
-    return "num";
-  }
-
-  deleteCampus = () => {
-    axios.delete(`http://localhost:3003/students/delete/${this.props.id}`)
-      .then(res => {
-        console.log(res.data);
-      })
-  }
-
   handleClick = () => {
     console.log(this.props.id)
-    this.props.changeEditInfo(this.props.id, this.props.name, this.props.email, this.props.gpa)
-    this.props.changeEdit()
+    this.props.changeSingleInfo(this.props.id, this.props.name, this.props.email, this.imageurl, this.props.gpa)
+    this.props.changeIsSingle();
   }
 
   render = () => {
     return (
       <div className="studentcard">
         <img src={this.props.imageurl}></img>
-        <a><h4>{this.props.name}</h4></a>
+        <a onClick={this.handleClick}><h4>{this.props.name}</h4></a>
         <a><h4>{CampusName}</h4></a>
       </div>
     );

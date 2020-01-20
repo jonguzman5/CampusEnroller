@@ -158,3 +158,9 @@
   text-decoration: none;
   margin-top: 2rem;
 }
+
+/**********************************************************************/
+
+.studentcard a {
+  cursor: pointer;
+}
