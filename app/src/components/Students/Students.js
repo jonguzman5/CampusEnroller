@@ -32,7 +32,7 @@ class Students extends Component {
         name: name,
         email: email,
         imageurl: imageurl,
-        gpa: gpa 
+        gpa: gpa
       }
     })
   }
@@ -85,6 +85,7 @@ class Students extends Component {
           email={this.state.singleInfo.email}
           imageurl={this.state.singleInfo.imageurl}
           gpa={this.state.singleInfo.gpa}
+          singleCardInfo={this.state.singleInfo}
         />
       );
     }
@@ -109,7 +110,7 @@ class Students extends Component {
 
   render(){
     this.getStudentData();
-    
+
       if(this.state.studentCardInfo.length === 0){
         return (
           <StudentsAbsent/>
