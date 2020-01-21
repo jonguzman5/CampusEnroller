@@ -13,6 +13,15 @@ class StudentPresent extends Component{
     super(props)
   }
 
+  changeIsSingle = () => {
+    this.props.changeIsSingle();
+  }
+
+  changeSingleInfo = (id, name, email, imageurl, gpa) => {
+    this.props.changeSingleInfo(id, name, email, imageurl, gpa);
+    // use a function on props to pass in the data you provide from student card to campus
+  }
+
   getStudentCardInfo = () => {
     
     let key = 0;
@@ -20,7 +29,6 @@ class StudentPresent extends Component{
 
     return this.props.studentData.map( (info) => {
       singleStudentData = this.props.studentData[key]
-      console.log(singleStudentData);
       ++key;
       return (
         <StudentCard
