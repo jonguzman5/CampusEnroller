@@ -83,7 +83,7 @@ class EditCampusForm extends Component {
   }
 
   render(){
-    if(false){
+    if(false){ {/*QUERY: this.state.RELQUERYRES.length === 0 */}
       return (
         <StudentsAbsent
           id={this.props.id}
