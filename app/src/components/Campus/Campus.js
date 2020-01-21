@@ -1,14 +1,11 @@
 import React, {Component} from 'react';
 import { NavLink } from 'react-router-dom';
-import '../../css/Campus.css';
-import CampusImage from './CampusImage';
-import CampusAddress from './CampusAddress';
-import CampusName from './CampusName';
-import CampusDesc from './CampusDesc';
-import StudentCard from '../Students/StudentCard';
-import EditCampusForm from '../Campuses/EditCampusForm';
 import axios from 'axios';
-//import Student from '../Student/Student';
+import EditCampusForm from '../Campuses/EditCampusForm';
+import StudentsPresent from './StudentsPresent';
+import StudentsAbsent from './StudentsAbsent';
+
+import '../../css/Campus.css';
 
 class Campus extends Component {
   constructor(props) {
@@ -33,59 +30,43 @@ class Campus extends Component {
   }
 
   render(){
-    if(this.state.isEdit){
+    if(!this.state.isEdit){
+      if(true){ {/*QUERY: this.state.RELQUERYRES.length === 0 */}
+        return (
+          <StudentsAbsent
+            imageUrl={this.props.imageurl}
+            address={this.props.address}
+            name={this.props.name}
+            description={this.props.description}
+            onClick={this.handleEditClick}
+            onClick={this.handleDeleteClick}
+          />
+        )
+      }
+      else {
+        return (
+          <StudentsPresent
+            imageUrl={this.props.imageurl}
+            address={this.props.address}
+            name={this.props.name}
+            description={this.props.description}
+            onClick={this.handleEditClick}
+            onClick={this.handleDeleteClick}
+          />
+        )
+      }
+    }
+    else {
       return (
         <EditCampusForm
-        id={this.props.id}
-        name={this.props.name}
-        address={this.props.address}
-        imageurl={this.props.imageurl}
-        description={this.props.description}
+          id={this.props.id}
+          name={this.props.name}
+          address={this.props.address}
+          imageurl={this.props.imageurl}
+          description={this.props.description}
         />
-      );
-    } else {
-      return (
-          <div className="container">
-            <div className="box box1">
-              <div className="item item1">
-                <CampusImage
-                  imageUrl={this.props.imageurl}
-                />
-                <CampusAddress
-                  address={this.props.address}
-                />
-              </div>
-              <div className="item item2">
-                <CampusName
-                  name={this.props.name}
-                />
-                <CampusDesc
-                  description={this.props.description}/>
-        
-                <div className="buttons">
-                  <button onClick={this.handleEditClick}>Edit</button>
-                  <button onClick={this.handleDeleteClick}>Delete</button>
-                </div>
-              </div>
-            </div>
-            <div className="box box2">
-              <h3>Students on campus</h3>
-              <NavLink to="/Students/NewStudentForm"><button>Add Student</button></NavLink>
-            </div>
-            <div className="studentcard-container">
-              <StudentCard/>
-              <StudentCard/>
-              <StudentCard/>
-              <StudentCard/>
-              <StudentCard/>
-              <StudentCard/>
-              <StudentCard/>
-              <StudentCard/>
-              <StudentCard/>
-              <StudentCard/>
-            </div>
-          </div>
-      );
+
+      )
     }
 
   }
