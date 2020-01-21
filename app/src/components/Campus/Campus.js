@@ -38,7 +38,7 @@ class Campus extends Component {
 
   // this function changes isStudent in the state to true
   // and gets fired by clicking on the name of a student in a StudentCard component
-  // PATH: Campus -> StudentPresent -> StudentCard
+  // PATH: CAMPUS -> StudentPresent -> StudentCard
   changeIsSingle = () => {
     this.setState({
       isStudent: true
@@ -47,7 +47,7 @@ class Campus extends Component {
 
   // this function populates the studentPageInfo object
   // with the information of the student that had their name clicked in a StudentCard component
-  // PATH: Campus -> StudentPresent -> StudentCard
+  // PATH: CAMPUS -> StudentPresent -> StudentCard
   changeSingleInfo = (id, name, email, imageurl, gpa) => {
     this.setState({
       studentPageInfo: {

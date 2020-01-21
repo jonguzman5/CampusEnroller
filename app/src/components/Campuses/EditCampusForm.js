@@ -7,15 +7,31 @@ import StudentCard from '../Students/StudentCard';
 import '../../css/Campuses.css'
 
 class EditCampusForm extends Component {
+  // PROPS
+  // ------
+  // ------
+  // id - campus id
+  // name - campus name 
+  // address - campus address
+  // imageurl - campus imageurl
+  // description - campus description
+  // ------
+  // STATE
+  // ------
+  // ------
+  // campusInfo - holds the new data that is sent to the database to update campus info
   constructor(props){
     super(props);
     this.state = {
       campusInfo: []
     };
+    // [DON'T TOUCH] - enables continuous updates to state
     this.handleSubmit = this.handleSubmit.bind(this);
     this.change = this.change.bind(this);
   }
 
+  // this function takes user input and converts it into the proper format that 
+  // the database will accept
   change = e => {
     const obj = { [e.target.name]: e.target.value };
     const campusInfo = Object.assign({}, this.state.campusInfo, obj);
@@ -24,6 +40,7 @@ class EditCampusForm extends Component {
     });
   };
 
+  // this function updates the campus in the database with info in the state
   updateCampusInfo = (data, alertMessage) => {
     axios({
       method: 'put',
@@ -31,6 +48,7 @@ class EditCampusForm extends Component {
       data: data
     }).then(res => {
         if(res.status === 200 ) {
+          // after put request send an alert message to the screen
           alert(alertMessage)
           console.log(res);
           console.log(res.data);
@@ -39,25 +57,29 @@ class EditCampusForm extends Component {
         }
 
       }).catch((err) => {
+        alert("Error " + err.response.data.errors)
         console.log('CATCH! =' + err.response.data.errors)
       });
   }
 
+  // this function handles the submit button press
   handleSubmit = (e) => {
+    // prevents page from reloading
     e.preventDefault();
 
     let updateCampus = null
 
+    // if name field or address field is empty make update info the same as old info 
     if (!this.state.campusInfo.name || !this.state.campusInfo.address) {
       updateCampus = {
         name: this.props.name,
-        imageurl: 'https://www.usnews.com/dims4/USNEWS/0b40ca9/17177859217/resize/800x540%3E/quality/85/?url=https%3A%2F%2Fmedia.beam.usnews.com%2Fed%2F49512dcc50e5394df36dccecb41082%2FUSNews18_MainHall.jpg',
-        address: this.props.address,
+        imageurl: this.props.imageurl,
         description: this.state.campusInfo.description
       }
 
       this.updateCampusInfo(updateCampus, 'ERROR: You can\'t leave "name" or "address" blank!');
-
+    // if image field is missing and name and address fields are present, change
+    // imageurl to a preestablished default
     } else if(!this.state.campusInfo.imageurl){
       updateCampus = {
         name: this.state.campusInfo.name,
@@ -67,6 +89,8 @@ class EditCampusForm extends Component {
       }
 
       this.updateCampusInfo(updateCampus, "This campus has been successfully updated!");
+
+    // if name, image, and address fields are present just update state with what's there
     } else {
       updateCampus = {
         name: this.state.campusInfo.name,
@@ -85,7 +109,9 @@ class EditCampusForm extends Component {
   }
 
   render(){
-    if(false){ {/*QUERY: this.state.RELQUERYRES.length === 0 */}
+    // if students are enrolled in the campus show student cards
+    // and allow user to add students not in campus to campus [UPDATE CONDITION]
+    if(false){ {/*QUERY: this.state.RELQUERYRES.length !== 0 */}
       return (
         <div className="editcampusform-container">
           <form onSubmit={this.handleSubmit}>
@@ -122,6 +148,8 @@ class EditCampusForm extends Component {
         </div>
       );
     }
+    // if students are not enrolled in campus, display all student cards and allow user
+    // add students to campus 
     else {
       return (
         <div className="editcampusform-container">

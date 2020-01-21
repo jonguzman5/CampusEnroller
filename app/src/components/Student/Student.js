@@ -6,6 +6,21 @@ import EditStudentForm from './EditStudentForm';
 import CampusPresent from './CampusPresent';
 import CampusAbsent from './CampusAbsent';
 
+  // PROPS
+  // ------
+  // ------
+  // id - student id
+  // name - student name 
+  // email - student email
+  // imageurl - student imageurl
+  // gpa - student gpa
+  // singleCardInfo - all student data as an object
+  // ------
+  
+  // STATE
+  // ------
+  // ------
+  // isEdit - if true, EditStudentForm component is rendered instead
 class Student extends Component {
   constructor(props){
     super(props);
@@ -14,6 +29,11 @@ class Student extends Component {
     }
   }
 
+
+  // this function deletes the student from the database and redirects user to Students
+  // this function is passed into CampusAbsent or CampusPresent component to deal with a delete button click
+  // PATH1: STUDENT -> CampusAbsent
+  // PATH2: STUDENT -> CampusPresent
   handleDeleteClick = () => {
     axios.delete(`http://localhost:3003/students/delete/${this.props.id}`)
       .then(res => {
@@ -22,6 +42,10 @@ class Student extends Component {
       })
   }
 
+  // this function sets isEdit in state to true
+  // this function is passed into CampusAbsent or CampusPresent component to deal with an edit button click
+  // PATH1: STUDENT -> CampusAbsent
+  // PATH2: STUDENT -> CampusPresent
   handleEditClick = () => {
     this.setState({
       isEdit: !(this.state.isEdit)
@@ -29,8 +53,9 @@ class Student extends Component {
   }
 
   render(){
-    // this.getStudentData();
+    // if isEdit is false
     if(!this.state.isEdit) {
+      // [FIX CONDITION] and student is not enrolled in any campuses, render CampusAbsent
       if(true){ {/*QUERY: this.state.RELQUERYRES.length === 0 */}
         return (
           <CampusAbsent
@@ -42,6 +67,7 @@ class Student extends Component {
           />
         )
       }
+      // and student is enrolled in at least one campus, render CampusPresent
       else {
         return (
           <CampusPresent
@@ -54,6 +80,7 @@ class Student extends Component {
         )
       }
     }
+    // if isEdit is true, render EditStudentForm component
     else {
       const fullName = this.props.name.split(' ');
       return (
