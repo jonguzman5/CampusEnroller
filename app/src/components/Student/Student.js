@@ -31,7 +31,7 @@ class Student extends Component {
   render(){
     // this.getStudentData();
     if(!this.state.isEdit) {
-      if(true){ {/*QUERY: this.state.RELQUERYRES.length === 0 */}
+      if(false){ {/*QUERY: this.state.RELQUERYRES.length === 0 */}
         return (
           <CampusAbsent
             imageurl={this.props.imageurl}
