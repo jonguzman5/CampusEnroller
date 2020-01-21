@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 import '../../css/Campuses.css'
+import Student from '../Student/Student';
 
 class CampusCard extends Component {
   constructor(props){
@@ -9,10 +10,6 @@ class CampusCard extends Component {
     this.state = {
       numStudents: 0
     }
-  }
-
-  numStudents = () => {
-    return "num";
   }
 
   deleteCampus = () => {
@@ -30,13 +27,14 @@ class CampusCard extends Component {
 
   handleCampusClick = () => {
     console.log(this.props.id)
-    this.props.changeSingleInfo(this.props.id, this.props.name, this.props.address, this.props.imageUrl, this.props.description)
+    this.props.changeSingleInfo(this.props.id, this.props.name, this.props.address, this.props.imageUrl, this.props.description, this.state.numStudents, this.state.studentData)
     this.props.changeIsSingle();
   }
 
   setNumStudents = (data) => {
     this.setState({
-      numStudents: data.length
+      numStudents: data.length,
+      studentData: data
     });
   }
 

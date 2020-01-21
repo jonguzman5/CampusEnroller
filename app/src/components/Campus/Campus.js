@@ -31,7 +31,7 @@ class Campus extends Component {
 
   render(){
     if(!this.state.isEdit){
-      if(true){ {/*QUERY: this.state.RELQUERYRES.length === 0 */}
+      if( !this.props.numStudents || this.props.numStudents === 0 ){ {/*QUERY: this.state.RELQUERYRES.length === 0 */}
         return (
           <StudentAbsent
             imageUrl={this.props.imageurl}
@@ -50,6 +50,7 @@ class Campus extends Component {
             address={this.props.address}
             name={this.props.name}
             description={this.props.description}
+            studentData={this.props.studentData}
             handleEditClick={this.handleEditClick}
             handleDeleteClick={this.handleDeleteClick}
           />
