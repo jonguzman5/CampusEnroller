@@ -65,19 +65,7 @@ class Campuses extends Component {
     axios.get('http://localhost:3003/campuses').then((response) => {
       this.setCampusData(response.data);
     })
-
-
-    // return fetch(`http://localhost:3000/campuses`).then((response) => {
-    //         if(response.status === 200) {
-    //             return response.json()
-    //         } else {
-    //             throw new Error('Couldn\'t connect to server')
-    //         }
-    //     }).then((data) => {
-    //         return data
-    //     })
-
-
+    
   }
 
   setCampusData = (data) => {

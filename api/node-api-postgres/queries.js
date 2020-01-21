@@ -34,6 +34,26 @@ const getStudents = (request, response) => {
   })
 }
 
+const getStudentsInCampus = (request, response) => {
+  const id = parseInt(request.params.id) 
+  pool.query("SELECT * FROM students INNER JOIN (SELECT * FROM studentcampusrelationship WHERE campusid = $1) AS filteredstudents ON students.id = filteredstudents.studentid", [id], (error, results) => {
+      if(error) {
+          throw error
+      }
+      response.status(200).json(results.rows)
+  })
+}
+
+const getStudentsNotInCampus = (request, response) => {
+  const id = parseInt(request.params.id) 
+  pool.query("SELECT * FROM students INNER JOIN (SELECT * FROM studentcampusrelationship WHERE NOT campusid = $1) AS filteredstudents ON students.id = filteredstudents.studentid", [id], (error, results) => {
+      if(error) {
+          throw error
+      }
+      response.status(200).json(results.rows)
+  })
+}
+
 const getStudentById = (request, response) => {
     const id = parseInt(request.params.id)
   
@@ -168,5 +188,6 @@ module.exports = {
     addStudenttoCampus,
     updateStudent,
     updateCampus,
-    getNewestCampus
+    getNewestCampus,
+    getStudentsInCampus
 }
