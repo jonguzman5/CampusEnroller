@@ -3,7 +3,19 @@ import axios from 'axios'
 import Campus from '../Campus/Campus'
 import '../../css/Campuses.css'
 
+
 class NewCampusForm extends Component {
+  // PROPS
+  // ------
+  // ------
+  // NONE
+  // ------
+  // STATE
+  // ------
+  // ------
+  // renderNewCampus - if true, a single campus view for new campus is rendered 
+  // singleInfo - holds info for the campuse that's generated on click
+  // campusInfo - holds info for all campuses
   constructor(props){
     super(props)
     this.state = {
@@ -12,9 +24,11 @@ class NewCampusForm extends Component {
       campusInfo: []
     };
 
+    // [SUPER IMPORTANT] - allows for input to be recorded into state
     this.change = this.change.bind(this);
   }
 
+  // updates campusInfo in state in real time with inputs
   change = e => {
     const obj = { [e.target.name]: e.target.value };
     const campusInfo = Object.assign({}, this.state.campusInfo, obj);
@@ -23,14 +37,11 @@ class NewCampusForm extends Component {
     });
   };
 
+
+  // converts campus data and saves to state
   setCampusData = (data) => {
 
-    let names = []
-    let imageUrls = []
-    let ids = []
-    let addresses = []
-    let descriptions = []
-    let campusInfo = []
+    let {names, imageUrls, ids, addresses, descriptions, campusInfo} = []
 
     for(let i = 0; i < data.length; i++){
         names.push(data[i].name)
@@ -55,25 +66,28 @@ class NewCampusForm extends Component {
     })
   }
 
+  // this function sets renderNewCampus in the state to true and makes the necessary fetches
+  // to database for information 
   renderNewCampus = () => {
+
     this.setState({
       renderNewCampus: true
     })
 
-    
+    // fetches the id of the newest campus
     axios.get(`http://localhost:3003/campuses/new`).then((response) => {
-      
-      
       console.log(response.data)
       const id = response.data[0].id;
 
+      // fetches the campus information for the newest campus using the id from 
+      // the outer fetch
       axios.get(`http://localhost:3003/campuses/${id}`).then((res) => {
         this.setCampusData(res.data);
       })
-
     })
   }
 
+  // this function handles a submit by creating the new Campus and adding it to database
   handleSubmit = (e) => {
     e.preventDefault();
     let newCampus = {
@@ -92,6 +106,7 @@ class NewCampusForm extends Component {
     })
   }
 
+  // by clicking the button you set renderNewCampus in the state to true
   handleClick = (e) => {
     this.setState({
       renderNewCampus: !(this.state.renderNewCampus)
@@ -100,6 +115,7 @@ class NewCampusForm extends Component {
   }
 
   render = () => {
+    // if renderNewCampus is true, render a Campus component
     if(this.state.renderNewCampus){
       return (
         <Campus
@@ -110,6 +126,7 @@ class NewCampusForm extends Component {
           description={this.state.singleInfo.description}
         />
       );
+    // if it's false, render the form
     } else {
       return (
       <div className="newcampusform-container">

@@ -5,6 +5,8 @@ import StudentName from './StudentName';
 import StudentDesc from './StudentDesc';
 import '../../css/Students.css';
 
+// ADD FUNCTIONALITY
+// this component is rendered when a student is not enrolled in any campuses
 function CampusAbsent(props){
   return (
       <div className="container">
