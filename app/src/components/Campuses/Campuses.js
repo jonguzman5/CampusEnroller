@@ -32,14 +32,16 @@ class Campuses extends Component {
     })
   }
 
-  changeSingleInfo = (id, name, address, imageUrl, description) => {
+  changeSingleInfo = (id, name, address, imageUrl, description, numStudents, studentData) => {
     this.setState({
       singleInfo: {
         id: id,
         name: name,
         address: address,
         imageUrl: imageUrl,
-        description: description
+        description: description,
+        numStudents: numStudents,
+        studentData: studentData
       }
     })
   }
@@ -65,19 +67,7 @@ class Campuses extends Component {
     axios.get('http://localhost:3003/campuses').then((response) => {
       this.setCampusData(response.data);
     })
-
-
-    // return fetch(`http://localhost:3000/campuses`).then((response) => {
-    //         if(response.status === 200) {
-    //             return response.json()
-    //         } else {
-    //             throw new Error('Couldn\'t connect to server')
-    //         }
-    //     }).then((data) => {
-    //         return data
-    //     })
-
-
+    
   }
 
   setCampusData = (data) => {
@@ -122,6 +112,8 @@ class Campuses extends Component {
           address={this.state.singleInfo.address}
           imageurl={this.state.singleInfo.imageUrl}
           description={this.state.singleInfo.description}
+          numStudents={this.state.singleInfo.numStudents}
+          studentData={this.state.singleInfo.studentData}
         />
       );
 
