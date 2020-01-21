@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 import EditCampusForm from '../Campuses/EditCampusForm';
-import StudentsPresent from './StudentsPresent';
-import StudentsAbsent from './StudentsAbsent';
+import StudentPresent from './StudentPresent';
+import StudentAbsent from './StudentAbsent';
 
 import '../../css/Campus.css';
 
@@ -33,25 +33,25 @@ class Campus extends Component {
     if(!this.state.isEdit){
       if(true){ {/*QUERY: this.state.RELQUERYRES.length === 0 */}
         return (
-          <StudentsAbsent
+          <StudentAbsent
             imageUrl={this.props.imageurl}
             address={this.props.address}
             name={this.props.name}
             description={this.props.description}
-            onClick={this.handleEditClick}
-            onClick={this.handleDeleteClick}
+            handleEditClick={this.handleEditClick}
+            handleDeleteClick={this.handleDeleteClick}
           />
         )
       }
       else {
         return (
-          <StudentsPresent
+          <StudentPresent
             imageUrl={this.props.imageurl}
             address={this.props.address}
             name={this.props.name}
             description={this.props.description}
-            onClick={this.handleEditClick}
-            onClick={this.handleDeleteClick}
+            handleEditClick={this.handleEditClick}
+            handleDeleteClick={this.handleDeleteClick}
           />
         )
       }
