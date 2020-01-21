@@ -5,6 +5,7 @@ import StudentName from './StudentName';
 import StudentDesc from './StudentDesc';
 import '../../css/Students.css';
 
+// ADD FUNCTIONALITY
 // PROPS
   // ------
   // ------
@@ -34,7 +35,8 @@ function CampusPresent(props){
             </div>
           </div>
         </div>
-        <p>This student is registered to a campus.</p>
+        <p>This student is registered to a campus.</p> 
+        {/* LIST CAMPUSES THAT STUDENT ARE ENROLLED IN */}
         {/*STUDENT'S CURR CAMPUSES*/}
         {/*DROPDOWN TO ADD NEW CAMPUS*/}
       </div>
