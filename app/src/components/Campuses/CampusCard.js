@@ -6,6 +6,9 @@ import '../../css/Campuses.css'
 class CampusCard extends Component {
   constructor(props){
     super(props)
+    this.state = {
+      numStudents: 0
+    }
   }
 
   numStudents = () => {
@@ -30,13 +33,28 @@ class CampusCard extends Component {
     this.props.changeSingleInfo(this.props.id, this.props.name, this.props.address, this.props.imageUrl, this.props.description)
     this.props.changeIsSingle();
   }
+
+  setNumStudents = (data) => {
+    this.setState({
+      numStudents: data.length
+    });
+  }
+
+  getNumStudents = () => {
+
+    axios.get(`http://localhost:3003/students/in/campus/${this.props.id}`).then((response) => {
+      this.setNumStudents(response.data);
+    })
+    
+  }
   
   render = () => {
+    this.getNumStudents();
     return (
       <div className="campuscard">
         <img src={this.props.imageUrl}></img>
         <a onClick={this.handleCampusClick}><h4>{this.props.name}</h4></a>
-        <p>{this.numStudents() + " Students"}</p>
+        <p>{this.state.numStudents + " Students"}</p>
         <div className="buttons">
           <button onClick={this.handleClick}>Edit</button>
           <button onClick={this.deleteCampus}>Delete</button>
