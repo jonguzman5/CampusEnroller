@@ -9,6 +9,20 @@ import CampusesPresent from './CampusesPresent'
 import Campus from '../Campus/Campus'
 
 class Campuses extends Component {
+  // PROPS
+  // ------
+  // ------
+  // NONE
+  // ------
+  
+  // STATE
+  // ------
+  // ------
+  // campusCardInfo contains info for campus cards 
+  // if edit is true, render campus edit form
+  // editInfo is the info that's passed into campus edit form
+  // if isSingle is true, a single Campus page is generated
+  // singleInfo is the info that's passed into single Campus page
   constructor(props){
     super(props)
     this.state = {
@@ -20,6 +34,9 @@ class Campuses extends Component {
     }
   }
 
+  // this function populates the editInfo object in state with campus info 
+  // from the campus card object that had its edit button clicked
+  // CALLED FROM: CampusCard Component
   changeEditInfo = (id, name, address, imageUrl, description) => {
     this.setState({
       editInfo: {
@@ -32,6 +49,9 @@ class Campuses extends Component {
     })
   }
 
+  // this function populates the singleInfo object in state with campus info 
+  // from the campus card object that had its name clicked
+  // CALLED FROM: CampusCard Component
   changeSingleInfo = (id, name, address, imageUrl, description, numStudents, studentData) => {
     this.setState({
       singleInfo: {
@@ -46,22 +66,29 @@ class Campuses extends Component {
     })
   }
 
+  // this function switches edit to true to trigger the rendering of 
+  // the edit campus form component
   changeEdit = () => {
     this.setState({
       edit: (!this.state.edit)
     })
   }
 
+  // this function switches isSingle to true to tigger the rendering of the 
+  // single campus page
   changeIsSingle = () => {
     this.setState({
       isSingle: (!this.state.isSingle)
     })
   }
 
+  // placeholder function that needs to be removed... (remove its calls first)
   addCampus = () => {
     console.log('clicked');
   }
 
+  // this function grabs the campuses data from the database and sends the 
+  // collect data as input to setCampusData()
   getCampusData = () => {
 
     axios.get('http://localhost:3003/campuses').then((response) => {
@@ -70,6 +97,8 @@ class Campuses extends Component {
     
   }
 
+  // this function converts the data into the appropiate format then updates
+  // campusCardInfo in the state with it
   setCampusData = (data) => {
 
       let names = []
@@ -102,6 +131,9 @@ class Campuses extends Component {
       })
   }
 
+  // if isSingle in state is true return a single campus site component to 
+  // if not return a campus card component for each campus
+  // this function is passed into and called by the CampusesPresent component
   getCampuses = () => {
 
     if(this.state.isSingle) {
@@ -139,19 +171,24 @@ class Campuses extends Component {
   }
 
   render(){
+    // get the campus data first
     this.getCampusData();
+    // if edit in state is false...
     if(!this.state.edit){
+      // and there are no campuses in the database, render a CampusAbsent component
       if(this.state.campusCardInfo.length === 0){
         return (
           <CampusesAbsent/>
         )
       }
+      // and there are campuses in the database, render a CampusPresent component 
       else {
         return (
           <CampusesPresent getCampuses={this.getCampuses}/>
         );
       }
     }
+    // if edit in state is true render a EditCampusForm
     else {
       return (
         <EditCampusForm
