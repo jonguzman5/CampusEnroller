@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+import { NavLink } from 'react-router-dom'
 import axios from 'axios'
 import StudentsAbsent from './StudentsAbsent'
 import StudentsPresent from './StudentsPresent'
+import StudentCard from '../Students/StudentCard';
 import '../../css/Campuses.css'
 
 class EditCampusForm extends Component {
@@ -85,28 +87,65 @@ class EditCampusForm extends Component {
   render(){
     if(false){ {/*QUERY: this.state.RELQUERYRES.length === 0 */}
       return (
-        <StudentsAbsent
-          id={this.props.id}
-          name={this.props.name}
-          address={this.props.address}
-          imageurl={this.props.imageurl}
-          description={this.props.description}
-          onChange={e => this.change(e)}
-          onSubmit={this.handleSubmit}
-        />
+        <div className="editcampusform-container">
+          <form onSubmit={this.handleSubmit}>
+            <h1>Edit Campus Form</h1>
+            <label>Campus Name <input name="name" type='text' placeholder={this.props.name} onChange={e => this.change(e)}/></label>
+            <label>Campus Location <input name="address" type='text' placeholder={this.props.address} onChange={e => this.change(e)}/></label>
+            <label>Campus Image URL <input name="imageurl" type='text' placeholder={this.props.imageurl} onChange={e => this.change(e)}/></label>
+            <label>Campus Description <input name="description" type='text' placeholder={this.props.description} onChange={e => this.change(e)}/></label>
+            <input className="hide" name="id" value={this.props.id} readOnly></input>
+            <input type='submit' value="Save Changes"/> {/*ADD REDIRECT TO /CAMPUSES*/}
+          </form>
+          <h1>Students on Campus</h1>
+          <div className="box box3">
+            <div className="item item3">
+              <select >
+                <option>Student 1</option>
+                <option>Student 2</option>
+              </select>
+              <NavLink to="/"><button>Add to Campus</button></NavLink>{/*remove navlink*/}
+            </div>
+          </div>
+          <div className="studentcard-container">
+            <StudentCard/>
+            <StudentCard/>
+            <StudentCard/>
+            <StudentCard/>
+            <StudentCard/>
+            <StudentCard/>
+            <StudentCard/>
+            <StudentCard/>
+            <StudentCard/>
+            <StudentCard/>
+          </div>
+        </div>
       );
     }
     else {
       return (
-        <StudentsPresent
-          id={this.props.id}
-          name={this.props.name}
-          address={this.props.address}
-          imageurl={this.props.imageurl}
-          description={this.props.description}
-          onChange={e => this.change(e)}
-          onSubmit={this.handleSubmit}
-        />
+        <div className="editcampusform-container">
+          <form onSubmit={this.handleSubmit}>
+            <h1>Edit Campus Form</h1>
+            <label>Campus Name <input name="name" type='text' placeholder={this.props.name} onChange={e => this.change(e)}/></label>
+            <label>Campus Location <input name="address" type='text' placeholder={this.props.address} onChange={e => this.change(e)}/></label>
+            <label>Campus Image URL <input name="imageurl" type='text' placeholder={this.props.imageurl} onChange={e => this.change(e)}/></label>
+            <label>Campus Description <input name="description" type='text' placeholder={this.props.description} onChange={e => this.change(e)}/></label>
+            <input className="hide" name="id" value={this.props.id} readOnly></input>
+            <input type='submit' value="Save Changes"/> {/*ADD REDIRECT TO /CAMPUSES*/}
+          </form>
+          <h1>Students on Campus</h1>
+          <div className="box box3">
+            <div className="item item3">
+              <select >
+                <option>Student 1</option>
+                <option>Student 2</option>
+              </select>
+              <NavLink to="/"><button>Add to Campus</button></NavLink>{/*remove navlink*/}
+            </div>
+          </div>
+          <p>There are no students currently registered to this campus</p>
+        </div>
       )
     }
   }

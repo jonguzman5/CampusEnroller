@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom'
 import '../../css/Campuses.css';
 
 function StudentsAbsent(props){
@@ -13,13 +14,15 @@ function StudentsAbsent(props){
         <input className="hide" name="id" value={props.id} readOnly></input>
         <input type='submit' value="Save Changes"/> {/*ADD REDIRECT TO /CAMPUSES*/}
       </form>
-      <div className="editcampusform-state">
-        <p>Students on Campus</p>
-        <select>
-          <option>Student 1</option>
-          <option>Student 2</option>
-        </select>
-        <button>Add to Campus</button>
+      <h1>Students on Campus</h1>
+      <div className="box box3">
+        <div className="item item3">
+          <select >
+            <option>Student 1</option>
+            <option>Student 2</option>
+          </select>
+          <NavLink to="/"><button>Add to Campus</button></NavLink>{/*remove navlink*/}
+        </div>
       </div>
       <p>There are no students currently registered to this campus</p>
     </div>
