@@ -32,14 +32,16 @@ class Campuses extends Component {
     })
   }
 
-  changeSingleInfo = (id, name, address, imageUrl, description) => {
+  changeSingleInfo = (id, name, address, imageUrl, description, numStudents, studentData) => {
     this.setState({
       singleInfo: {
         id: id,
         name: name,
         address: address,
         imageUrl: imageUrl,
-        description: description
+        description: description,
+        numStudents: numStudents,
+        studentData: studentData
       }
     })
   }
@@ -110,6 +112,8 @@ class Campuses extends Component {
           address={this.state.singleInfo.address}
           imageurl={this.state.singleInfo.imageUrl}
           description={this.state.singleInfo.description}
+          numStudents={this.state.singleInfo.numStudents}
+          studentData={this.state.singleInfo.studentData}
         />
       );
 
