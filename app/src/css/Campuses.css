@@ -43,13 +43,13 @@
 .campuscard-container > * {
   flex: 0 0 35vw;
   margin-bottom: 2rem;
+  background: linear-gradient(to right, #b993d6, #8ca6db);
 }
 
 /**********************************************************************/
 
 .campuscard-container .campuscard {
   text-align: center;
-  background-color: darkgrey;
   /*border: 5px solid red;*/
 }
 
