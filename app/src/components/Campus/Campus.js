@@ -65,7 +65,6 @@ class Campus extends Component {
           imageurl={this.props.imageurl}
           description={this.props.description}
         />
-
       )
     }
 

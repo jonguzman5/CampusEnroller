@@ -7,7 +7,7 @@ import CampusDesc from './CampusDesc';
 import StudentCard from '../Students/StudentCard';
 import '../../css/Campuses.css';
 
-function StudentsPresent(props){
+function StudentPresent(props){
   return (
       <div className="container">
         <div className="box box1">
@@ -49,4 +49,4 @@ function StudentsPresent(props){
   );
 }
 
-export default StudentsPresent;
+export default StudentPresent;
