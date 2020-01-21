@@ -175,13 +175,15 @@ class Campuses extends Component {
     this.getCampusData();
     // if edit in state is false...
     if(!this.state.edit){
-      // and there are no campuses in the database, render a CampusAbsent component
+      // and there are no campuses in the database, render a CampusesAbsent component
       if(this.state.campusCardInfo.length === 0){
         return (
           <CampusesAbsent/>
         )
       }
-      // and there are campuses in the database, render a CampusPresent component 
+      // and there are campuses in the database, render a CampusesPresent component 
+      // with the function for the JSX for either single campus view or campus card passed in
+      // depending on whether the user clicks on a campus title or not 
       else {
         return (
           <CampusesPresent getCampuses={this.getCampuses}/>

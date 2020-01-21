@@ -9,6 +9,24 @@ import Student from '../Student/Student'
 import '../../css/Campus.css';
 
 class Campus extends Component {
+  // PROPS
+  // ------
+  // ------
+  // id - campus id
+  // name - campus name
+  // address - campus address
+  // imageurl - campus imageurl
+  // description - campus description
+  // numStudents - number of students in campus
+  // studentData - the student data for each student in a campus, to be used to generate student cards
+  // ------
+  
+  // STATE
+  // ------
+  // ------
+  // isEdit - if true render an EditCampusForm component
+  // isStudent - if it exists/is true render Student component (single Student page)
+  // studentPageInfo - contains student information to pass into Student component
   constructor(props) {
     super(props);
     this.state = {
@@ -18,12 +36,18 @@ class Campus extends Component {
     }
   }
 
+  // this function changes isStudent in the state to true
+  // and gets fired by clicking on the name of a student in a StudentCard component
+  // PATH: CAMPUS -> StudentPresent -> StudentCard
   changeIsSingle = () => {
     this.setState({
       isStudent: true
     })
   }
 
+  // this function populates the studentPageInfo object
+  // with the information of the student that had their name clicked in a StudentCard component
+  // PATH: CAMPUS -> StudentPresent -> StudentCard
   changeSingleInfo = (id, name, email, imageurl, gpa) => {
     this.setState({
       studentPageInfo: {
@@ -36,12 +60,15 @@ class Campus extends Component {
     })
   }
 
+  // this function switches isEdit in state to true 
+  // and causes a render of the EditCampusForm component
   handleEditClick = () => {
     this.setState({
       isEdit: !(this.state.isEdit)
     })
   }
 
+  // Delete the campus from the database and redirect the user back to Campuses
   handleDeleteClick = () => {
     axios.delete(`http://localhost:3003/campuses/delete/${this.props.id}`)
       .then(res => {
@@ -51,7 +78,9 @@ class Campus extends Component {
   }
 
   render(){
+    // if isEdit is false, 
     if(!this.state.isEdit){
+      // and there are no students in the campus, render the StudentAbsent component
       if( !this.props.numStudents || this.props.numStudents === 0 ){ {/*QUERY: this.state.RELQUERYRES.length === 0 */}
         return (
           <StudentAbsent
@@ -63,6 +92,7 @@ class Campus extends Component {
             handleDeleteClick={this.handleDeleteClick}
           />
         )
+      // and if isStudent is true, render the a single student page
       } else if(this.state.isStudent) {
         return(
           <Student
@@ -74,6 +104,7 @@ class Campus extends Component {
             singleCardInfo={this.state.studentPageInfo}
           />
         );
+      // and if isStudent is false, render the StudentPresent component
       } else {
         return (
           <StudentPresent
@@ -89,6 +120,7 @@ class Campus extends Component {
           />
         )
       }
+    // if isEdit is true, render the EditCampusForm component
     } else {
         return (
           <EditCampusForm

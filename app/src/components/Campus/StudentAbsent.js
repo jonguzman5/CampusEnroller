@@ -7,6 +7,21 @@ import CampusDesc from './CampusDesc';
 import StudentCard from '../Students/StudentCard';
 import '../../css/Campuses.css';
 
+// this component let's the user know if no students are registered to a campus 
+// on a single campus page
+
+// PROPS
+  // ------
+  // ------
+  // name - campus name
+  // address - campus address
+  // imageUrl - campus imageurl
+  // description - campus description
+  // handleEditClick() - allows for the render of EditCampusForm
+  // handleDeleteClick() - allows for the deletion of the campus
+  // studentData - the student data for each student in a campus, to be used to generate student cards
+  // ------
+
 function StudentAbsent(props){
   return (
       <div className="container">

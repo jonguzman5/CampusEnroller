@@ -5,6 +5,19 @@ import StudentName from './StudentName';
 import StudentDesc from './StudentDesc';
 import '../../css/Students.css';
 
+// PROPS
+  // ------
+  // ------
+  // name - student name
+  // imageurl - student imageurl
+  // gpa - student gpa
+  // handleEditClick() - allows for the render of EditCampusForm
+  // handleDeleteClick() - allows for the deletion of the campus
+  // changeIsSingle() - being passed to StudentCard component
+  //                  - tells Campus to render Student component
+  // changeSingleInfo() - being passed to StudentCard component
+  //                    - passes information for Student component back to Campus component
+  // ------
 function CampusPresent(props){
   return (
       <div className="container">
@@ -22,8 +35,8 @@ function CampusPresent(props){
           </div>
         </div>
         <p>This student is registered to a campus.</p>
-        {/*STUDENT'S CURR CAMPUS*/}
-        {/*DROPDOWN TO CHANGE CAMPUS*/}
+        {/*STUDENT'S CURR CAMPUSES*/}
+        {/*DROPDOWN TO ADD NEW CAMPUS*/}
       </div>
   );
 }

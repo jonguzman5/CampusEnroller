@@ -2,6 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom'
 import '../../css/Campuses.css';
 
+// this component displays a message telling user that there are no campuses registered 
+// in the database
 function CampusesAbsent(){
   return (
     <div className="campuses-container">

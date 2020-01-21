@@ -1,6 +1,17 @@
 import React, { Component } from 'react'
 import '../../css/Students.css'
 
+// ADD FUNCTIONALITY
+  // PROPS
+  // ------
+  // ------
+  // id - student id
+  // firstName - student first name 
+  // lastName - student last name
+  // email - student email
+  // imageurl - student imageurl
+  // gpa - student gpa
+  // ------
 class EditStudentForm extends Component {
   constructor(props){
     super(props)
