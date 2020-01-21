@@ -6,6 +6,8 @@ class App extends Component {
     super(props);
   }
 
+  // generate a Campuses component by default
+
   render() {
     return (
       <div className="App">
