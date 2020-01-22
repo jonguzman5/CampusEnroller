@@ -8,8 +8,21 @@ import StudentsPresent from './StudentsPresent';
 import EditStudentForm from '../Student/EditStudentForm';
 import Student from '../Student/Student';
 
-
+// This component is the Students page, it displays StudentCards to user
 class Students extends Component {
+  // PROPS
+  // ------
+  // ------
+  // NONE
+  // ------
+  
+  // STATE
+  // ------
+  // ------
+  // studentCardInfo - array of StudentCard data that will be passed into StudentCard components
+  // isSingle - false by default, if true single Student page will be rendered
+  // singleInfo - data for the single Student page 
+  // ------
   constructor(props) {
     super(props);
     this.state = {
@@ -19,12 +32,15 @@ class Students extends Component {
     }
   }
 
+  // this function sets isSingle to true in the state triggering a render of a single student page
   changeIsSingle = () => {
     this.setState({
       isSingle: !(this.state.isSingle)
     })
   }
 
+  // this function populates the state with the data of the student whose name 
+  // was clicked on to generate the single student page
   changeSingleInfo = (id, name, email, imageurl, gpa) => {
     this.setState({
       singleInfo: {
@@ -37,12 +53,14 @@ class Students extends Component {
     })
   }
 
+  // this function gets all student data from the database
   getStudentData = () => {
     axios.get('http://localhost:3003/students').then((response) => {
       this.setStudentData(response.data);
     })
   }
 
+  // this function processes the student data and sends it state
   setStudentData = (data) => {
 
     let ids = []
@@ -75,6 +93,9 @@ class Students extends Component {
     })
   }
 
+  // this function returns the JSX elements for the single Student page if isSingle
+  // is true or for the StudentCards if isSingle is false,
+  // PATH: STUDENTS -> StudentsPresent
   getStudents = () => {
 
     if(this.state.isSingle) {
@@ -108,6 +129,9 @@ class Students extends Component {
     });
   }
 
+  // this function grabs all Student data then renders the StudentAbsent component if 
+  // there are no students in the database or renders the StudentPresent component is there 
+  // are students in the database
   render(){
     this.getStudentData();
 

@@ -2,6 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom'
 import '../../css/Students.css';
 
+// this component is rendered by the Students component when there are no students 
+// in the database. It lets the user know exactly that
 function StudentsAbsent(){
   return (
     <div className="students-container">
