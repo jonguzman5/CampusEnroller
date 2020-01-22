@@ -1,3 +1,4 @@
+// DOCUMENTATION/GUIDE: https://blog.logrocket.com/setting-up-a-restful-api-with-node-js-and-postgresql-d96d6fc892d8/
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors');

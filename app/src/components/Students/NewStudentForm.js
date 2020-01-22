@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import '../../css/Students.css'
 
+// ADD FUNCTIONALITY
+// this component is the form for a new student and currently lacks the ability to take 
+// in and pass new student data to the database
 class NewStudentForm extends Component {
   constructor(props){
     super(props)
